@@ -1,0 +1,7 @@
+#signup.page.clearfix
+  = form_for(resource, :as => resource_name, :url => registration_url(resource_name), :html => { :class => 'styled clearfix grey-box' }) do |f|
+    %h2.heading Edit Venue
+    = render 'venues/registrations/fields', :f => f
+    .extra-pad= f.submit "Update", :class => 'submit'
+  #content
+    = render 'shared/venue_categories', :current => resource.category

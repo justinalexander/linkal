@@ -1,0 +1,55 @@
+- content_for :header_form do
+  %form.styled.autosubmit{ :method => :get }
+    - if params[:category].present?
+      = hidden_field_tag :category, params[:category]
+    - if params[:cost].present?
+      = hidden_field_tag :cost, params[:cost]
+    - if params[:date].present?
+      = hidden_field_tag :date, params[:date]
+    - if params[:time_from].present?
+      = hidden_field_tag :time_from, params[:time_from]
+    - if params[:time_to].present?
+      = hidden_field_tag :time_to, params[:time_to]
+    %div
+      = label_tag :per_page, 'Results Per Page:'
+      = select_tag :per_page, per_page_options, :class => 'short small autosubmit_item'
+- content_for :center_header do
+  #calendar-nav
+    %h2 Available Events
+    %p
+      = date_range_header
+      = link_to 'Change Dates', root_url, :class => 'button-alt'
+  
+%p.viewing Viewing #{@events.count} of #{pluralize(@events.total_entries, 'result')}
+= render 'search_controls'
+
+- if @events.present?
+  %table.styled
+    %thead
+      %tr
+        %th Event Title
+        %th Location
+        %th Type
+        %th Cost
+        %th Date
+        %th Start Time
+    %tbody
+      - @events.each do |event|
+        %tr{"data-href" => event_url(event), :onClick => "_gaq.push(['_trackEvent', 'Event', 'click', '#{event.name}', #{event.id}]);"}
+          %td= event.name
+          %td= event.location_name
+          %td= event.category_name
+          %td= event.cost.zero? ? 'Free' : number_to_currency(event.cost)
+          %td= display_date(event)
+          %td= event.start_at.to_s(:time)
+    %tfoot
+      %tr
+        %td#pagination{:colspan => "6"}
+          = will_paginate @events
+- else
+  %p.emphasized.center
+    No results found for your search. You can try
+    = link_to 'widening your search', params.except(:category, :cost, :date, :per_page)
+    or
+    = succeed '.' do
+      = link_to 'start over', root_url

@@ -1,0 +1,15 @@
+.progress
+  %h2
+    %span Select Dates
+%div{:class => "content clearfix" }
+  %h1 When are you looking for an event?
+  %p Please select your dates below so we can find events for you!
+  = form_tag events_path, :class => "styled", :method => :get do
+    .pickers
+      =text_field_tag "from", nil, :class => "datepicker text half", :placeholder => 'Select A Date'
+      =link_to 'Set an end date', "#", :class => 'switch'
+      %span.end-date
+        %span.to
+          %span to
+        =text_field_tag 'to', nil, :class => 'datepicker text half', :placeholder => 'End Date'
+    =submit_tag 'Find Events', :class => 'button'

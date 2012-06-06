@@ -1,0 +1,331 @@
+/* @override http://socialatitude.heroku.com/stylesheets/event_calendar.css?1307470323 */
+
+/* 
+  Event Calendar stylesheet
+  
+  Colors:
+  #d5d5d5 - border (gray)
+  #303030 - day names bg (gray)
+  #444 - number (gray)
+  #ecede2 - day header bg (light tan)
+  ##d7d7ba - today header bg (tan)
+  #ffffdd - today bg light (yellow)
+  #777 - other month number (gray)
+  #efefef - other month day header (gray)
+  #2eac6a - hover (green)
+*/
+
+/* Outer most container */
+div.ec-calendar {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 14px;
+  margin: 30px 0px 0;
+  padding: 0;
+}
+
+/* Month name header & links */
+table.ec-calendar-header {
+  table-layout: fixed;
+  
+  position: absolute;
+  top: -60px;
+  left: 300px;
+}
+
+th.ec-month-name {
+  color: #1b4c64;
+  font-size: 24px;
+  font-family: "museo-slab-1","museo-slab-2", 'Lucida Grande', Arial, sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin: 0px;
+  width: 200px;
+  padding: 0px 10px;
+}
+
+.ie6 th.ec-month-name,
+.ie7 th.ec-month-name {
+	line-height: 24px;
+}
+
+th.ec-month-nav {
+	text-indent: -9999em;
+	overflow: hidden;
+	position: relative;
+	width: 105px;
+}
+
+.ie6 th.ec-month-nav,
+.ie7 th.ec-month-nav {
+	text-indent: 0;
+	font-size: 0;
+}
+
+th.ec-month-nav a{
+	display: block;
+	width: 88px;
+	font-size: 10px;
+	line-height: 10px;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #9a9a9a;
+	font-weight: normal;
+	text-indent: 0em;
+	position: absolute;
+	top: 0;
+}
+
+.ie6 th.ec-month-nav a,
+.ie7 th.ec-month-nav a {
+	left: 0;
+}
+
+th.ec-previous-month a {
+	padding-right: 17px;
+	background: url(../images/arrow.left.png) no-repeat right bottom;
+	text-indent: -9999em;
+	overflow: hidden;
+}
+
+th.ec-previous-month a:hover {
+	background-position: right top;
+	text-indent: 0px;
+	text-align: right;
+}
+
+th.ec-next-month a {
+	padding-left: 17px;
+	background: url(../images/arrow.right.png) no-repeat left bottom;
+	text-indent: -9999em;
+	overflow: hidden;
+}
+
+th.ec-next-month a:hover {
+	background-position: left top;
+	text-indent: 0px;
+	text-align: left;
+}
+
+/* Containers */
+div.ec-body {
+  position: relative;
+  white-space: nowrap;
+}
+
+/* Day names */
+table.ec-day-names {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  table-layout: fixed;
+  padding: 2px 0;
+  
+  font-size: 10px;
+  color: #9a9a9a;
+  text-transform: uppercase;
+}
+
+th.ec-day-name {
+  font-weight: normal;
+}
+
+/* Rows container and Row */
+div.ec-rows {
+  position: absolute;
+  top: 0px !important;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  background: white;
+  overflow: hidden;
+  border: 1px solid #e1e1e1;
+}
+
+.ec-row {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Background */
+.ec-row-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.ec-row:first-child .ec-day-bg {
+	border-top: 0px;
+}
+
+.ec-day-bg:first-child {
+	border-left: 0px;
+}
+
+.ec-day-bg {
+	border: 1px solid #e1e1e1;
+	border-width: 1px 0px 0px 1px;
+	background: #fafafa;
+}
+
+.ec-today-bg {
+	background: #ebf2f5;
+}
+
+.ec-row-table {
+	position: absolute;
+	left: 0px;
+	bottom: -19px;
+  
+	width: 100%;
+	height: 72px;
+	
+	padding: 0;
+	margin: 0;
+}
+
+/* Day header */
+.ec-day-header {
+	text-align: right;
+	overflow: hidden;
+	height: 72px !important;
+	width: 140px;
+	vertical-align: bottom;
+}
+
+a.ec-day-link,
+a.ec-day-link:visited {
+	font-size: 72px;
+	font-family: Georgia, serif;
+	font-style: italic;
+	text-decoration: none;
+	
+	color: #e8e8e8;
+	color: rgba(0,0,0,.1);
+}
+
+.ie6 .ec-day-header a.ec-day-link,
+.ie7 .ec-day-header a.ec-day-link {
+	line-height: 60px;
+	color: #e8e8e8;
+}
+
+.ec-today-header {
+}
+
+.ec-weekend-day-header {
+  
+}
+
+.ec-other-month-header {
+}
+
+.ec-other-month-bg {
+  background: #ededed;
+}
+
+
+/* Event cell and container */
+.ec-event-cell {
+  cursor: pointer;
+  vertical-align: top;
+  padding-right: 1px;
+  padding-left: 2px;
+}
+
+.ec-event-cell a {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ec-no-event-cell {
+  cursor: default;
+}
+
+.ec-event {
+  color: white;
+  padding-right: 1px;
+  padding-left: 11px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -moz-border-radius: 3px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ec-event :hover {
+  /* doesn't look as good as js highlighting */
+  /* background-color: #2eac6a; */
+}
+
+.ec-event-bg a {
+  color: white;
+}
+
+/* used to distinguish non-all_day events */
+.ec-event-no-bg {
+  position: relative;
+  /* padding-left: 5px; */
+}
+
+.ec-event-no-bg a {
+  /* isn't implemented in all browsers */
+  color: inherit;
+}
+
+.ec-event-time {
+  font-size: 85%;
+  font-weight: bold;
+  padding-right: 3px;
+}
+
+
+/* Left and right arrows */
+/* Doesn't work in IE6, use bg images instead */
+.ec-left-arrow, .ec-right-arrow {
+  position: relative;
+  top: 3px;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  margin-bottom: -8px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+
+.ec-left-arrow {
+  margin-left: -7px;
+  margin-right: auto;
+  border-right: 4px solid white;
+}
+
+.ec-right-arrow {
+  margin-left: auto;
+  margin-right: 3px;
+  border-left: 4px solid white;
+}
+
+/* remove this to not have a bullet */
+/* don't look as good in ie */
+.ec-bullet {
+  position: absolute;
+  top: 7px;
+  width: 4px;
+  height: 4px;
+  margin-left: -7px;
+  margin-right: auto;
+  -webkit-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  -moz-border-radius: 2px;
+}

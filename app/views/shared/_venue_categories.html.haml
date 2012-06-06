@@ -1,0 +1,8 @@
+- Venue::CATEGORIES.each do |vc|
+  .type-explanation.grey-box{ :id => "#{vc[:stub]}-explanation", :class => (defined?(current) and current == vc[:stub]) ? nil : 'hide' }
+    %p.emphasized
+      %span Cost per Interested Patron
+    %p.emphasized.big
+      #{vc[:name]} – #{number_to_currency vc[:price]}/click
+    %p.small Cost is calculated per click thru to your event, per unique visitor. You will only be charged for one unique visitor, per click, per event each day. 
+

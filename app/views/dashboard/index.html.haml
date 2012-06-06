@@ -1,0 +1,35 @@
+%h1.heading
+  = link_to 'New Event', new_event_url, :class => 'push-button'
+  = link_to 'Edit Venue Info', edit_venue_registration_url, :class => 'push-button'
+  Venue Dashboard
+#venue-sidebar.alt
+  %p
+    Current Balance
+    %span.title= number_to_currency( @venue.balance )
+  %p
+    Total Clicks to Date
+    %span.title= @views
+#venue-dashboard.grey-box
+  = link_to 'View All Upcoming Events', venue_events_url, :class => 'button-alt alignright'
+  - if @next_event.present?
+    %p.title
+      %span.label Next Scheduled Event:
+      %span.title
+        = @next_event.name
+        = link_to 'Edit', edit_event_url(@next_event), :class => 'ir edit'
+      %span.label
+        In
+        = time_ago_in_words(@next_event.start_at)# In 25 Days
+    %p.analytics
+      = @next_event.attending
+      %span.label Attending
+      = @next_event.maybe_attending
+      %span.label Maybes
+      = @next_event.views.count
+      %span.label Clicks
+  - else
+    %p.title
+      %span.label Next Scheduled Event:
+      %span.title
+        No Events Scheduled
+

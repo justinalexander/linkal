@@ -1,0 +1,21 @@
+= f.fields_for :billing_location, f.object.billing_location || Location.new do |l|
+  = l.hidden_field :name, :value => "Billing Address"
+  %div
+    = l.label :address_1, 'Address'
+    = l.text_field :address_1, :class => 'text'
+  %div= l.text_field :address_2, :class => 'text'
+  %div
+    = l.label :city
+    = l.text_field :city, :class => 'text'
+  %div
+    = l.label :state, 'State/Province'
+    = l.select :state, options_for_state_select
+  %div
+    = l.label :zip, 'Zip/Postal Code'
+    = l.text_field :zip, :class => 'text'
+  %div
+    = l.label :country
+    = l.text_field :country, :class => 'text'
+  %div
+    = l.label :phone
+    = l.text_field :phone, :class => 'text'

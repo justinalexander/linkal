@@ -1,0 +1,7 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.rvmrc
+/Users/danielrice/Documents/Aptana Studio 3 Workspace/socialatitude/.tddium
+/Users/danielrice/Documents/Aptana Studio 3 Workspace/socialatitude/.tddium-deploy-key

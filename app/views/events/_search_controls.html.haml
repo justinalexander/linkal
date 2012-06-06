@@ -1,0 +1,23 @@
+#table-head.grey-box
+  %h3 Filter Results
+  %form.styled.clearfix.autosubmit{ :method => :get }
+    - if params[:per_page].present?
+      = hidden_field_tag :per_page, params[:per_page]
+    .column
+      %div
+        = label_tag :cost, 'Cost:'
+        = search_select :cost, Event.cost_options_for_select
+      %div
+        = label_tag :category, 'Type:'
+        = search_select :category, Event.categories_for_select
+    .column
+      - if @from.present? and @to.present?
+        %div
+          = label_tag :date, 'Date:'
+          = date_search_select(@from, @to)
+      %div
+        = label_tag :time_from, 'Time:'
+        = time_search_select(:time_from)
+        %span.pad -
+        = time_search_select(:time_to)
+  

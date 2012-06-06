@@ -1,0 +1,50 @@
+= devise_error_messages!
+%div
+  = f.label :name, 'Your Name'
+  = f.text_field :first_name, :class => 'text half'
+  = f.text_field :last_name, :class => 'text half'
+%div
+  = f.label :email
+  = f.email_field :email, :class => 'text'
+%div
+  = f.label :category, 'Venue Type'
+  = f.select :category, Venue.categories_for_select, :prompt => 'Please select'
+%h2.heading Venue Address
+= render 'shared/location_fields', :f => f
+%h2.heading Billing Address
+= render 'shared/billing_location_fields', :f => f
+-unless params[:payment].present? or resource.try(:manual_payment)
+  %h2.heading Credit Card
+  - if f.object.new_record?
+    = render 'shared/credit_card_fields', :f => f
+  - else
+    %div
+      = f.label :credit_card_number, 'Card Number'
+      = f.object.credit_card_display_number
+-else
+  = f.hidden_field :manual_payment, :value => '1'
+
+%fieldset#change-password{ :class => f.object.new_record? ? nil : 'hide' }
+  %div
+    = f.label :password, f.object.new_record? ? 'Password:' : 'New Password:'
+    = f.password_field :password, :class => 'text'
+  %div
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, :class => 'text'
+
+- unless f.object.new_record?
+  %div
+    = f.label :current_password
+    = f.password_field :current_password, :class => 'text'
+    %p
+      = link_to 'Change Password', 'javascript:void(0)', :class => 'button add-change-password'
+- else
+  .no-label.extra-pad
+    %label{ :for => 'venue_terms_of_service' }
+      = f.check_box :terms_of_service
+      I agree with the
+      %a.terms-of-service{:href => "#terms-of-service"} Terms of Service/Privacy Policy
+  #terms-of-service
+    = render 'pages/terms_of_service'
+    = render 'pages/privacy_policy'
+

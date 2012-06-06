@@ -1,0 +1,46 @@
+- if f.object.errors.present?
+  #error_explanation
+    %h2 The following errors prevented your event from being saved:
+    %ul.errors
+      - @event.errors.full_messages.each do |message|
+        %li= message
+
+%div
+  = f.label :name
+  = f.text_field :name, :class => 'text'
+%div
+  = f.label :category
+  = f.select :category, Event.categories_for_select, :prompt => 'Please select'
+.other_category_name{ :class => f.object.other_category? ? nil : 'hide' }
+  = f.label :other_category_name, 'Custom Category'
+  = f.text_field :other_category_name, :class => 'text'
+%div
+  = f.label :cost
+  = f.text_field :cost, :class => 'text'
+%div.dates
+  = f.label :start_at, 'Start At<br/>(Date &mdash; Time)'.html_safe
+  = f.datetime_select :start_at, {}, :class => 'small'
+  - unless f.object.end_at?
+    %p
+      = link_to 'Add End Time', 'javascript:void(0)', :class => 'button add-end-time'
+%fieldset#end-time{ :class => f.object.end_at? ? nil : 'hide'}
+  /[if lte IE 7 ]><p class="hide">This fixes IE7 for some reason...</p>
+  .dates
+    = f.label :end_at, 'End At<br/>(Date &mdash; Time)'.html_safe
+    = f.datetime_select :end_at, {}, :class => 'small'
+%div
+  = f.label :description
+  = f.text_area :description
+%div
+  = f.label :city_id, "City"
+  = f.select :city_id, options_for_select_for_cities
+%div
+  %p
+    = link_to 'Use Custom Location', 'javascript:void(0)', :class => 'button add-location'
+%fieldset#location{ :class => f.object.location_id? ? nil : 'hide'}
+  /[if lte IE 7 ]><p class="hide">This fixes IE7 for some reason...</p>
+  %div
+    = f.label :location_id, 'Previously Used Locations'
+    = f.collection_select :location_id, f.object.venue.custom_locations.uniq, :id, :name, :prompt => 'Enter new location'
+  %fieldset.location_fields
+    = render 'shared/location_fields', :f => f

@@ -1,0 +1,12 @@
+%div
+  = f.label :credit_card_type, 'Type'
+  = f.select :credit_card_type, credit_card_types, :include_blank => false
+%div
+  = f.label :credit_card_number, 'Card Number'
+  = f.text_field :credit_card_number, :class => 'text'
+%div
+  = f.label :credit_card_expires_on, 'Expiration'
+  = f.date_select :credit_card_expires_on, {:order => [:month, :year], :start_year => Time.now.year, :end_year => Time.now.year + 15, :add_month_numbers => true, :use_short_month => true}, :class => "half"
+%div
+  = f.label :credit_card_verification_value, 'Verification'
+  = f.text_field :credit_card_verification_value, :class => 'text'

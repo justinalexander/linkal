@@ -1,0 +1,53 @@
+- content_for :facebook_meta_tags do
+  = tag :meta, :property => "og:title", :content => @event.name
+  = tag :meta, :property => "og:type", :content => "website" 
+  = tag :meta, :property => "og:url", :content => request.url 
+  = tag :meta, :property => "og:image", :content => "#{request.protocol+request.host_with_port}/images/fb-app-icon.png"
+  = tag :meta, :property => "og:site_name", :content => "SociaLatitude"
+  = tag :meta, :property => "fb:app_id", :content => "266058043417564"
+  = tag :meta, :property => "og:description", :content => @event.description
+
+%section#event.clearfix
+  .leftCol
+    .venue= @event.location_name
+    #event-details
+      %h1= @event.name
+      .details
+        %p
+          %span Date
+          = display_date(@event)
+        %p
+          %span Start
+          = @event.start_at.to_s(:time)
+          %span End
+          = @event.end_at.to_s(:time) if @event.end_at.present?
+        %p
+          %span Type
+          = @event.category_name
+          %span Cost
+          = @event.cost.zero? ? 'Free' : number_to_currency(@event.cost)
+    .poll
+      %h3 Let Us Know!
+      %p Do you plan on attending this event?
+      %p{:class => 'grey-box hide', :id => 'attending-message'} Thanks! We hope to see you there.
+      %p.attending
+        = link_to '<strong>Absolutely!</strong> Count me in.'.html_safe, create_attendance_event_url(@event, :attending => 'yes'), :remote => true, :method => :put, :class => 'radio', :id => 'attending-yes'
+        = link_to '<strong>I might!</strong> I have to take a look at my calendar.'.html_safe, create_attendance_event_url(@event, :attending => 'maybe'), :remote => true, :method => :put, :class => 'radio', :id => 'attending-maybe'
+    #event-description
+      #share
+        %h3 Share:
+        = twitter_link_tag(@event)
+        = share_by_email_tag(@event)
+        = link_to image_tag('share.cal.png'), event_url(@event, :format => 'ics' )
+        %br
+        = facebook_like
+      %h3 Description
+      = simple_format(auto_link(@event.description))
+  %div{:class => 'rightCol map'}
+    = google_map_for_event(@event)
+    .venue-info
+      %h3 Location
+      %p= render 'shared/location_address', :location => @event.location_id? ? @event.location : @event.venue.location
+    .venue-info
+      %h3 Phone
+      %p= number_to_phone(@event.phone_number)

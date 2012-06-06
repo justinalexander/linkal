@@ -1,0 +1,4 @@
+// alert("Did it! You're <%= params[:attending] %>")
+$('#attending-<%= params[:attending] %>').addClass('active');
+$('p.attending a').attr('href', '')
+$('#attending-message').removeClass('hide')

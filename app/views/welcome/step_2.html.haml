@@ -1,0 +1,36 @@
+%div{:class => "progress progress2" }
+  %h2
+    %span Stay in Touch
+%div{:class => "content clearfix" }
+  %h1 Connect with SociaLatitude!
+  %p Our database is constantly updated with unique events happening all around you. Please provide us with your email address and well keep you connected with the latest events as they happen. After you sign up, check out our welcome email where you can customize all your settings!
+  = form_tag step_3_path, :class => 'styled' do
+    = text_field_tag 'email', nil, :class => 'text', :placeholder => 'Your email address'
+    -#Adding some space to fill in the template, or the style breaks, remove when adding the Advanced Email Settings back.  
+    %p &nbsp;
+    %p &nbsp;
+    %p &nbsp;
+    -#  http://haml-lang.com/docs/yardoc/file.HAML_REFERENCE.html#haml_comments_
+      = link_to 'Advanced Email Settings', '#', :class => 'expander'
+      #email-settings
+        %span Frequency
+        .choices
+          %label
+            =radio_button_tag 'frequency', 'daily', true
+            Daily
+          %label
+            =radio_button_tag 'frequency', 'weekly'
+            Weekly
+          %label
+            =radio_button_tag 'frequency', 'monthly'
+            Monthly
+        %span Event types:
+        .choices
+          =select_tag 'categories', options_for_select(Event.categories_for_select), :class => 'chzn-select', :multiple => true
+        %span Which Cities?
+        .choices
+          =select_tag 'cities', options_for_select(City.all.collect {|c| [c.name, c.id]}), :class => 'chzn-select', :multiple => true
+    -# End HAML Comment Block
+    .skip
+      =link_to 'Skip this step', step_3_path
+      =submit_tag 'Next', :class => 'button', :confirm => 'By clicking Yes/Agree, I understand that I am allowing SociaLatitude.com to email me periodically.  If you would like to unsubscribe later, please follow the directions contained in the email you receive.'

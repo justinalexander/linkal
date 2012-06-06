@@ -1,0 +1,18 @@
+- content_for :center_header do
+  #calendar-nav
+    %p
+      - unless calendar_for_current_month?
+        = link_to 'Back to this month', root_url, :class => 'current-month'
+- form_tag events_url, :method => :get, :id => 'calendar-head' do
+  %h2 Find Events
+  %div
+    = label_tag :from, 'From:'
+    = text_field_tag :from, '', :class => 'datepicker text half'
+  %div
+    = label_tag :to, 'Until:'
+    = text_field_tag :to, '', :class => 'datepicker text half'
+  = submit_tag 'Go!', :class => 'submit'
+= raw(event_calendar)
+- content_for :javascript_footer do
+  :javascript
+    $( ".datepicker" ).datepicker({ defaultDate: '#{@shown_month.strftime('%m/%d/%y')}' });

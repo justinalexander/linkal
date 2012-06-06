@@ -1,0 +1,25 @@
+- content_for :center_header do
+  #calendar-nav
+    %h2
+      Venue
+      %span Sign In
+    %p
+      Don't have an account?
+      = link_to 'Sign Up', new_venue_registration_url, :class => 'push-button'
+
+#signin.grey-box
+  = form_for(resource, :as => resource_name, :url => session_url(resource_name), :html => { :class => 'styled clearfix'}) do |f|
+    %div
+      = f.label :email
+      = f.email_field :email, :class => 'text'
+    %div
+      = f.label :password
+      = f.password_field :password, :class => 'text'
+    .no-label
+      %label{ :for => "#{resource_name}_remember_me" }
+        = f.check_box :remember_me, :class => 'radio'
+        Remember Me
+    %div
+      = f.submit "Sign in", :class => 'submit'
+      = link_to 'I Forgot My Password!', new_password_url(resource_name), :class => 'button'
+%p.viewing= link_to 'Admin Login', new_admin_user_session_path

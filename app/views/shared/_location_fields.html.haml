@@ -1,0 +1,23 @@
+= f.fields_for :location, f.object.location || Location.new do |l|
+  %div
+    = l.label :name, 'Venue'
+    = l.text_field :name, :class => 'text'
+  %div
+    = l.label :phone
+    = l.text_field :phone, :class => 'text'
+  %div
+    = l.label :address_1, 'Address'
+    = l.text_field :address_1, :class => 'text'
+  %div= l.text_field :address_2, :class => 'text'
+  %div
+    = l.label :city
+    = l.text_field :city, :class => 'text'
+  %div
+    = l.label :state, 'State/Province'
+    = l.select :state, options_for_state_select
+  %div
+    = l.label :zip, 'Zip/Postal Code'
+    = l.text_field :zip, :class => 'text'
+  %div
+    = l.label :country
+    = l.text_field :country, :class => 'text'

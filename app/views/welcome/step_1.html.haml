@@ -1,0 +1,9 @@
+%div{:class => 'progress progress1'}
+  %h2
+    %span Select City
+%div{:class => 'content clearfix'}
+  %h1 Where are you looking for events?
+  %p To get started, please let us know where you would like to search for events.
+  = form_tag step_2_path, :class => 'styled' do
+    = select_tag("city_id", options_for_select_for_cities)
+    = submit_tag 'Next', :class => 'button'

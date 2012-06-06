@@ -1,0 +1,17 @@
+<p>
+	<a href="#" id="change-city" title="Change City?"><%= session[:city_name].present? ? "#{session[:city_name]}, NC" : "Please Choose A City" %></a>
+</p>
+<div id="cities" class="clearfix">
+	<ul>
+		<li>
+			<h3>North Carolina</h3>
+			<ul>
+				<%- City.all.each do |city| %>
+				<li>
+					<%= link_to city.name, change_city_path(:city_id => city.id), :method => :post %>
+				</li>
+				<%- end %>
+			</ul>
+		</li>
+	</ul>
+</div>

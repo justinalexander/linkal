@@ -1,0 +1,6 @@
+#signup.page.clearfix
+  = form_for @event, :html => { :class => 'styled clearfix grey-box' } do |f|
+    %h2.heading create an event
+    = render 'fields', :f => f
+    %div
+      = f.submit 'Create Event', :class => 'submit'

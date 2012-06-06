@@ -1,0 +1,43 @@
+- content_for :header_form do
+  %form.autosubmit.styled{ :method => :get }
+    %div
+      - if params[:past].present?
+        = hidden_field_tag :past, params[:past]
+      = label_tag :per_page, 'Results Per Page:'
+      = select_tag :per_page, per_page_options, :class => 'short small'
+
+%h1.heading
+  = link_to 'Back To Dashboard', venue_root_url, :class => 'push-button'
+  - if params[:past].present?
+    Past Events
+    = link_to 'View Upcoming Events', venue_events_url, :class => 'button'
+  - else
+    Upcoming Events
+    = link_to 'View Past Events', venue_events_url(:past => true), :class => 'button'
+%table.styled
+  %thead
+    %tr
+      %th Event Title
+      %th Date
+      %th Page Clicks
+      %th Attending
+      %th Maybe Attending
+      %th Balance
+      %th Actions
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td= link_to event.name, event
+        %td= event.start_at.to_s(:date)
+        %td= event.views.count
+        %td= event.attending
+        %td= event.maybe_attending
+        %td= number_to_currency( event.balance )
+        %td
+          = link_to 'Edit', edit_event_url(event), :class => 'ir edit'
+          = link_to 'Delete', event_url(event), :method => :delete, :confirm => 'Are you sure you want to delete this event?', :class => 'ir delete'
+  %tfoot
+    %tr
+      %td#pagination{:colspan => "7"}
+        = will_paginate @events
+

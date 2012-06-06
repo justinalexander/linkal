@@ -1,0 +1,39 @@
+- content_for :center_header do
+  #calendar-nav
+    %h2
+      Venue
+      %span Sign Up
+    %p
+      Already have an account?
+      = link_to 'Sign In', new_venue_session_url, :class => 'push-button'
+
+#signup.page.clearfix
+  = form_for(resource, :as => resource_name, :url => registration_url(resource_name), :html => { :class => 'styled clearfix grey-box' }) do |f|
+    %h2.heading Create An Account
+    = render 'venues/registrations/fields', :f => f
+    .extra-pad= f.submit "Sign up", :class => 'submit'
+
+  #content
+    %h1
+      SociaLatitude brings venues and patrons
+      %span closer than ever before!
+    = render 'shared/venue_categories'
+        
+    %p SociaLatitude is a new way to connect to the customers that drive your business. Never before has there been an easier and more efficient way to advertise. SociaLatitude is the only source where local consumers can quickly and easily find all the events going on in their community, including yours. SociaLatitude is a highly efficient advertising tool that you can use to reach out to your target customers. Because we allow Davidson only venues, you’ll only be advertising to the people who are interested in coming to your events! 
+
+    %p SociaLatitude is the most efficient way to spend your marketing dollars. You are never charged until a target customer is interested in your event. Along with that, you will easily be able to calculate the Return on your Investment with our feature that allows the user to let you know whether they plan on attending your event or not. SociaLatitude is the most efficient way to bring customers to you! 
+
+    %h2 How it Works
+    %p Fill out all your information and choose what type of venue you are. From this information, you will be given the pricing details associated with your venue. This amount is what you will be charged only if a target customer clicks on your event. It is free to sign up and there are no other fees; you are only charged when someone who is interested clicks on your event that you post. If no one sees your event, then you won’t be charged anything.
+
+    %p After signing up with SociaLatitude, you will be able to log into your own account page where you’ll have a dashboard that you can control and monitor everything. From creating new events to seeing how many people have clicked on each event, this page will give you all the information you need. You will also be able to edit active events with updated information, check your current balances for each event and even view how many people plan on attending your event!
+    
+    - unless params[:payment].present? or resource.try(:manual_payment)
+      %p You will be charged on a weekly basis for the events ending the previous week. You will receive a detailed summary of each ended event and your credit card will be charged the appropriate amount. 
+
+    %h2 Exclusions
+    %p SociaLatitude is a place where local consumers can search and easily find special events going on in their community. We don’t allow daily/weekly specials or everyday sales to be posted on the site. We want to keep the site to non-ordinary events only. If you have any questions regarding your event, please feel free to contact us.  
+
+    %p.emphasized
+      %span To get started, please fill out the necessary information and then you’re ready to start posting events!
+

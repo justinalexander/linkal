@@ -1,0 +1,8 @@
+%strong= location.name
+%br/
+= location.address_1
+- if location.address_2.present?
+  %br/
+  = location.address_2
+%br/
+#{location.city}, #{location.state} #{location.zip}

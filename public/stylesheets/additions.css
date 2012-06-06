@@ -1,0 +1,81 @@
+p.viewing {
+	color: #cccccc;
+	text-transform: uppercase;
+	font-size: 11px;
+  text-align: right;
+}
+
+/* MAKE PAGINATION STYLING WORK WITH WILL_PAGINATE */
+table.styled tfoot #pagination {
+	text-align: center;
+}
+
+table.styled tfoot #pagination span, table.styled tfoot #pagination a {
+	display: inline;
+	padding: 0px 7px;
+	color: #9a9a9a;
+	text-decoration: none;
+	line-height: 25px;
+	text-transform: uppercase;
+}
+
+table.styled tfoot #pagination a {
+	color: #9a9a9a;
+	text-decoration: none;
+}
+
+table.styled tfoot #pagination .current {
+	color: #1b4c64;
+	font-weight: bold;
+}
+
+p.smallcaps {
+	color: #9a9a9a;
+	font-size: 11px;
+	text-transform: uppercase;
+  padding: 0;
+}
+
+p.emphasized {
+	color: #1b4c64;
+	font-size: 18px;
+	font-family: "museo-slab-1","museo-slab-2", 'Lucida Grande', Arial, sans-serif;
+	font-weight: 300;
+}
+
+p.emphasized span {
+	color: #66abc9;
+}
+
+p.big {
+  font-size: 20px;
+}
+
+.small {
+  font-size: 10px !important;
+}
+
+.type-explanation {
+  margin: 0.8em 0;
+  text-align: center;
+}
+
+#content.narrow {
+  width: 523px;
+}
+
+form.styled .field_with_errors label {
+  color: #8a1f11;
+}
+
+div#table-head form {
+  padding-bottom: 0;
+}
+
+h1.pad_top {
+  padding-top: 3em;
+}
+
+#event-description .content p {
+  padding-bottom: 1em;
+}
