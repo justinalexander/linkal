@@ -13,7 +13,7 @@ describe DashboardController do
   end
 
   context "when logged in" do
-    let(:venue){ Factory.create(:venue) }
+    let(:venue){ FactoryGirl.create(:venue) }
     before{ sign_in venue }
 
     describe "GET index" do
@@ -25,9 +25,9 @@ describe DashboardController do
 
     describe "GET events" do
       it "should assign upcoming events to @events" do
-        Factory.create(:event)
-        Factory.create(:event, :venue => venue, :start_at => 1.day.ago)
-        Factory.create(:event, :venue => venue, :start_at => 1.day.from_now)
+        FactoryGirl.create(:event)
+        FactoryGirl.create(:event, :venue => venue, :start_at => 1.day.ago)
+        FactoryGirl.create(:event, :venue => venue, :start_at => 1.day.from_now)
 
         get :events
         assigns(:events).should have(1).event

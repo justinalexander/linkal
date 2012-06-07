@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe WelcomeController do
-  let!(:city) { Factory(:city, :name => 'Atlanta') }
+  let!(:city) { FactoryGirl.create(:city, :name => 'Atlanta') }
   
   it "routes root url to #step_1" do
       { :get => root_path }.should route_to(:controller => "welcome", :action => "step_1")

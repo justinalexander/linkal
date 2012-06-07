@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe CitiesController do
   before(:all) do
-    @city1 = Factory :city, :name => "Davidson"
-    @city2 = Factory :city, :name => "Atlanta"
+    @city1 = FactoryGirl.create :city, :name => "Davidson"
+    @city2 = FactoryGirl.create :city, :name => "Atlanta"
   end
   context "POST change_city" do
     it "can change city session values to a city" do
@@ -11,7 +11,7 @@ describe CitiesController do
       post :change_city, :city_id => @city1.id
       session[:city_id].should eql(@city1.id)
       session[:city_name].should eql(@city1.name)
-      
+
       post :change_city, :city_id => @city2.id
       session[:city_id].should eql(@city2.id)
       session[:city_name].should eql(@city2.name)

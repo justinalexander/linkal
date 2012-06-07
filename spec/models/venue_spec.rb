@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Venue do
-  let(:attrs) { Factory.attributes_for(:venue, :credit_card_type => "visa").merge(:location_attributes => Factory.attributes_for(:location)).merge(:billing_location_attributes => Factory.attributes_for(:location)) }
+  let(:attrs) { FactoryGirl.attributes_for(:venue, :credit_card_type => "visa").merge(:location_attributes => FactoryGirl.attributes_for(:location)).merge(:billing_location_attributes => FactoryGirl.attributes_for(:location)) }
 
   it "should be creatable with valid attributes" do
     mock_customer_response = mock("Authorize.net Response", :authorization => "12345", :success? => true)
@@ -15,7 +15,7 @@ describe Venue do
   it "should be creatable without credit card information when manual_payment attribute exists" do
     GATEWAY.should_not_receive(:create_customer_profile)
     GATEWAY.should_not_receive(:create_customer_payment_profile)  
-    venue = Venue.new( Factory.attributes_for(:venue, :manual_payment => 1).merge(:location_attributes => Factory.attributes_for(:location)).merge(:billing_location_attributes => Factory.attributes_for(:location)))
+    venue = Venue.new( FactoryGirl.attributes_for(:venue, :manual_payment => 1).merge(:location_attributes => FactoryGirl.attributes_for(:location)).merge(:billing_location_attributes => FactoryGirl.attributes_for(:location)))
 
     venue.should be_valid
   end
@@ -36,7 +36,7 @@ describe Venue do
     mock_customer_response = mock("Authorize.net Response", :authorization => "12345", :success? => true)
     GATEWAY.should_receive(:create_customer_profile).and_return(mock_customer_response)
     
-    venue = Factory.build(:venue, attrs.merge(:category => 'bogus'))
+    venue = FactoryGirl.build(:venue, attrs.merge(:category => 'bogus'))
     venue.should_not be_valid
   end
 
@@ -52,8 +52,8 @@ describe Venue do
   end
 
   describe "#balance" do
-    let(:venue){ Factory.create(:venue) }
-    let(:event){ Factory.create(:event, :venue => venue) }
+    let(:venue){ FactoryGirl.create(:venue) }
+    let(:event){ FactoryGirl.create(:event, :venue => venue) }
     before{ 5.times{ event.record_view('127.0.0.1') } }
 
     it "should be able to calculate its balance" do

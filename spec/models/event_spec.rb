@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Event do
   let(:attrs) { 
-    v = Factory.create(:venue)
-    Factory.attributes_for(:event).merge(:venue_id => v.id)
+    v = FactoryGirl.create(:venue)
+    FactoryGirl.attributes_for(:event).merge(:venue_id => v.id)
   }
 
   it "should be valid with valid attributes" do
@@ -23,7 +23,7 @@ describe Event do
   describe ".between" do
     before do
       Timecop.freeze(Time.now)
-      (-2..2).each{ |n| Factory.create(:event, :start_at => n.days.from_now) }
+      (-2..2).each{ |n| FactoryGirl.create(:event, :start_at => n.days.from_now) }
     end
     subject{ Event.between(1.day.ago, 1.day.from_now) }
 
@@ -36,9 +36,9 @@ describe Event do
     end
 
     context "multi-day events" do
-      let(:multi_day){ Factory.create(:event, :start_at => Time.parse("may 19, 10:00am"),
+      let(:multi_day){ FactoryGirl.create(:event, :start_at => Time.parse("may 19, 10:00am"),
                                               :end_at   => Time.parse("may 20, 6:00pm")) }
-      let(:runs_late){ Factory.create(:event, :start_at => Time.parse("may 19, 7:00pm"),
+      let(:runs_late){ FactoryGirl.create(:event, :start_at => Time.parse("may 19, 7:00pm"),
                                               :end_at   => Time.parse("may 20, 2:00am")) }
       it "should find event with overlap" do
         multi_day # create before running query
@@ -61,7 +61,7 @@ describe Event do
   describe ".upcoming" do
     before do
       Timecop.freeze(Time.at(Time.now.to_i))
-      (-2..2).each{ |n| Factory.create(:event, :start_at => n.days.from_now) }
+      (-2..2).each{ |n| FactoryGirl.create(:event, :start_at => n.days.from_now) }
     end
     subject{ Event.upcoming }
     it "should return events with start_at after now" do
@@ -75,7 +75,7 @@ describe Event do
   describe ".past" do
     before do
       Timecop.freeze(Time.at(Time.now.to_i))
-      (-2..2).each{ |n| Factory.create(:event, :start_at => n.days.from_now) }
+      (-2..2).each{ |n| FactoryGirl.create(:event, :start_at => n.days.from_now) }
     end
     subject{ Event.past }
     it "should return events with start_at before now" do
@@ -89,7 +89,7 @@ describe Event do
   describe ".with_cost" do
     before do
       [0, 1, 5, 7, 10].each do |cost|
-        Factory.create(:event, :cost => cost)
+        FactoryGirl.create(:event, :cost => cost)
       end
     end
 
@@ -128,7 +128,7 @@ describe Event do
     before do
       (18..20).each do |day|
          (1..3).each do |hour|
-            Factory.create(:event, :start_at => Time.zone.local(2011, 05, day, hour))
+            FactoryGirl.create(:event, :start_at => Time.zone.local(2011, 05, day, hour))
          end
        end
     end
@@ -153,21 +153,21 @@ describe Event do
   end
 
   it "should not allow setting 'attending' through mass assignment" do
-    event = Factory.create(:event)
+    event = FactoryGirl.create(:event)
     expect{
       event.update_attributes(:attending => 5)
       event.reload }.to_not change{ event.attending }
   end
 
   it "should not allow setting 'maybe_attending' through mass assignment" do
-    event = Factory.create(:event)
+    event = FactoryGirl.create(:event)
     expect{
       event.update_attributes(:maybe_attending => 5)
       event.reload }.to_not change{ event.maybe_attending }
   end
 
   it "should not allow setting 'deleted' through mass assignment" do
-    event = Factory.create(:event)
+    event = FactoryGirl.create(:event)
     event.should_not be_deleted
 
     event.update_attributes(:deleted => true)
@@ -175,39 +175,39 @@ describe Event do
   end
     
   it "should return only non-deleted events by default" do
-    Factory.create(:event)
-    deleted_event = Factory.create(:event, :deleted => true)
+    FactoryGirl.create(:event)
+    deleted_event = FactoryGirl.create(:event, :deleted => true)
 
     Event.all.should_not include(deleted_event)
   end
 
   it "should return other_category_name if category is other" do
-    event = Factory.create(:event, :category => 'other', :other_category_name => 'Something Awesome')
+    event = FactoryGirl.create(:event, :category => 'other', :other_category_name => 'Something Awesome')
     event.category_name.should eq('Something Awesome')
   end
   
   it "should only allow valid category names" do
-    event = Factory.build(:event, :category => 'bogus')
+    event = FactoryGirl.build(:event, :category => 'bogus')
     event.should_not be_valid
   end
 
   it "should require other_category_name if category is other" do
-    event = Factory.build(:event, :category => 'other')
+    event = FactoryGirl.build(:event, :category => 'other')
     event.should_not be_valid
   end
 
   describe "#other_category?" do
     it "should return true if category is 'other'" do
-      Factory.build(:event, :category => 'other').should be_other_category
+      FactoryGirl.build(:event, :category => 'other').should be_other_category
     end
 
     it "should return false if category is not 'other'" do
-      Factory.build(:event, :category => 'performing-visual-arts').should_not be_other_category
+      FactoryGirl.build(:event, :category => 'performing-visual-arts').should_not be_other_category
     end
   end
 
   describe "#balance" do
-    let(:event){ Factory.create(:event) }
+    let(:event){ FactoryGirl.create(:event) }
     before{ 5.times{ event.record_view('127.0.0.1') } }
 
     it "should calculate" do

@@ -7,7 +7,7 @@ require 'spec_helper'
 describe EventsController do
   render_views
 
-  let(:mock_event){ Factory.create(:event) }
+  let(:mock_event){ FactoryGirl.create(:event) }
 
   describe "GET index" do
     let(:event_list){ [ mock_event ] }
@@ -30,9 +30,9 @@ describe EventsController do
     # current events instead.
     # PT Feature #19615169
     it "assigns only upcoming events when supplying empty date parameters" do
-      venue = Factory.create(:venue)
-      event_in_past   = Factory.create(:event, :venue => venue, :start_at => 2.days.ago)
-      event_in_future = Factory.create(:event, :venue => venue, :start_at => 2.days.from_now)
+      venue = FactoryGirl.create(:venue)
+      event_in_past   = FactoryGirl.create(:event, :venue => venue, :start_at => 2.days.ago)
+      event_in_future = FactoryGirl.create(:event, :venue => venue, :start_at => 2.days.from_now)
       
       get :index, "from"=>"", "to"=>""
       assigns(:events).should include event_in_future
@@ -48,7 +48,7 @@ describe EventsController do
 
     context "when current city is set" do
       before do 
-        @city = Factory.create(:city)
+        @city = FactoryGirl.create(:city)
         @request.session[:city_id] = @city.id
       end
       
@@ -115,8 +115,8 @@ describe EventsController do
       end
 
       it "should not add a view if creating venue is logged in" do
-        venue = Factory.create(:venue)
-        event = Factory.create(:event, :venue => venue)
+        venue = FactoryGirl.create(:venue)
+        event = FactoryGirl.create(:event, :venue => venue)
 
         sign_in(venue)
         expect{ get :show, :id => event.id }.to_not change{ View.count }
@@ -151,7 +151,7 @@ describe EventsController do
 
   describe "routes requiring authorization" do
     context "when logged in as venue" do
-      let(:venue){ Factory.create(:venue) }
+      let(:venue){ FactoryGirl.create(:venue) }
       before{ sign_in venue }
 
       describe "GET new" do
@@ -171,7 +171,7 @@ describe EventsController do
 
       describe "POST create" do
         context "with valid params" do
-          let(:event_attrs){ Factory.attributes_for(:event) }
+          let(:event_attrs){ FactoryGirl.attributes_for(:event) }
 
           it "should create an event and assign to @event" do
             post :create, :event => event_attrs
@@ -185,14 +185,14 @@ describe EventsController do
           end
 
           it "should allow assigning a location" do
-            location = Factory.create(:location)
+            location = FactoryGirl.create(:location)
             event_attrs.merge!(:location_id => location.id )
             post :create, :event => event_attrs
             assigns(:event).location.should eq(location)
           end
 
           it "should allow creating a new location" do
-            location_attributes = Factory.attributes_for(:location)
+            location_attributes = FactoryGirl.attributes_for(:location)
             event_attrs.merge!(:location_attributes => location_attributes)
             post :create, :event => event_attrs
             assigns(:event).location.name.should eq(location_attributes[:name])
@@ -204,7 +204,7 @@ describe EventsController do
 
       describe "DELETE destroy" do
         context "when current venue owns event" do
-          let(:event){ Factory.create(:event, :venue => venue) }
+          let(:event){ FactoryGirl.create(:event, :venue => venue) }
           it "sets the event to 'deleted'" do
             expect{ delete :destroy, :id => event.id
                     event.reload }.to change{ event.deleted }.from(false).to(true)
@@ -217,8 +217,8 @@ describe EventsController do
         end
 
         context "when the current venue doesn't own the event" do
-          let(:other_venue){ Factory.create(:venue) }
-          let(:event){ Factory.create(:event, :venue => other_venue) }
+          let(:other_venue){ FactoryGirl.create(:venue) }
+          let(:event){ FactoryGirl.create(:event, :venue => other_venue) }
           before{ request.env["HTTP_REFERER"] = 'example.com' }
 
           it "should not delete the event" do
@@ -236,7 +236,7 @@ describe EventsController do
 
       describe "GET edit" do
         context "when current venue owns event" do
-          let(:event){ Factory.create(:event, :venue => venue) }
+          let(:event){ FactoryGirl.create(:event, :venue => venue) }
           it "assigns the requested event as @event" do
             get :edit, :id => event.id
             assigns(:event).should eq(event)
@@ -244,8 +244,8 @@ describe EventsController do
         end # context when current venue owns event
 
         context "when the current venue doesn't own the event" do
-          let(:other_venue){ Factory.create(:venue) }
-          let(:event){ Factory.create(:event, :venue => other_venue) }
+          let(:other_venue){ FactoryGirl.create(:venue) }
+          let(:event){ FactoryGirl.create(:event, :venue => other_venue) }
           before{ request.env["HTTP_REFERER"] = 'example.com' }
 
           it "should display an error message" do
@@ -257,7 +257,7 @@ describe EventsController do
 
       describe "PUT update" do
         context "when current venue owns the event" do
-          let(:event){ Factory.create(:event, :venue => venue) }
+          let(:event){ FactoryGirl.create(:event, :venue => venue) }
           describe "with valid params" do
             it "updates the requested event" do
               put :update, :id => event.id, :event => {:name => 'New Event Name'}
@@ -290,8 +290,8 @@ describe EventsController do
         end # context when current venue owns event
 
         context "when the current venue doesn't own the event" do
-          let(:other_venue){ Factory.create(:venue) }
-          let(:event){ Factory.create(:event, :venue => other_venue) }
+          let(:other_venue){ FactoryGirl.create(:venue) }
+          let(:event){ FactoryGirl.create(:event, :venue => other_venue) }
           before{ request.env["HTTP_REFERER"] = 'example.com' }
 
           it "should display an error message" do
@@ -323,7 +323,7 @@ describe EventsController do
       end
 
       describe "DELETE destroy" do
-        let(:event){ Factory.create(:event) }
+        let(:event){ FactoryGirl.create(:event) }
 
         it "should not delete the event" do
           expect{ delete :destroy, :id => event.id }.to_not change{ event.deleted }.from(false)
@@ -336,7 +336,7 @@ describe EventsController do
       end
 
       describe "GET edit" do
-        let(:event){ Factory.create(:event) }
+        let(:event){ FactoryGirl.create(:event) }
 
         it "should redirect to venue sign in" do
           get :edit, :id => event.id
@@ -345,7 +345,7 @@ describe EventsController do
       end
 
       describe "PUT update" do
-        let(:event){ Factory.create(:event) }
+        let(:event){ FactoryGirl.create(:event) }
 
         it "should redirect to venue sign in" do
           put :update, :id => event.id

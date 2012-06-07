@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Location do
-  let(:attrs) { Factory.attributes_for(:location) }
+  let(:attrs) { FactoryGirl.attributes_for(:location) }
 
   it "should be creatable with valid attributes" do
     location = Location.new(attrs)
