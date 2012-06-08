@@ -1,0 +1,19 @@
+%h3 Sign Up
+
+= form_for(:user, :as => :user, :url => registration_url(:user)) do |f|
+  = devise_error_messages!
+  %div{"data-role" => "fieldcontain"}
+    = f.text_field :first_name, :placeholder => "First Name"
+  %div{"data-role" => "fieldcontain"}
+    = f.text_field :last_name, :placeholder => "Last Name"
+  %div{"data-role" => "fieldcontain"}
+    = f.email_field :email, :placeholder => "Email"
+  %div{"data-role" => "fieldcontain"}
+    = f.password_field :password, :placeholder => "Password"
+  %div{"data-role" => "fieldcontain"}
+    = f.password_field :password_confirmation, :placeholder => "Confirm Password"
+  %p
+    %strong By clicking submit you agree to our terms and conditions
+  = f.submit "Sign Up"
+
+= render :partial => "devise/shared/links"

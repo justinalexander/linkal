@@ -1,56 +1,15 @@
-= devise_error_messages!
+%h3 Log In
 
-%div{"data-content-theme" => "d", "data-role" => "collapsible-set", "data-theme" => "a"}
-  %div{"data-role" => "collapsible"}
-    %h3 Log In
+= form_for(:user, :as => :user, :url => session_url(:user)) do |f|
+  = devise_error_messages!
 
-    = form_for(:user, :as => :user, :url => session_url(:user)) do |f|
-      %div{"data-role" => "fieldcontain"}
-        = f.label :email
-        = f.email_field :email, :placeholder => "Email"
-      %div{"data-role" => "fieldcontain"}
-        = f.label :password
-        = f.password_field :password, :placeholder => "Password"
-      %div{"data-role" => "fieldcontain"}
-        %fieldset{ "data-role" => "controlgroup"}
-          %legend
-          = f.check_box :remember_me, "data-mini" => :true
-          = f.label :remember_me, "Remember Me"
-      = f.submit "Log In"
+  %div{"data-role" => "fieldcontain"}
+    = f.email_field :email, :placeholder => "Email"
+  %div{"data-role" => "fieldcontain"}
+    = f.password_field :password, :placeholder => "Password"
+  %div{"data-role" => "fieldcontain"}
+    = f.check_box :remember_me, "data-mini" => :true
+    = f.label :remember_me, "Remember Me"
+  = f.submit "Log In"
 
-  %div{"data-role" => "collapsible"}
-    %h3 Sign Up
-
-    = form_for(:user, :as => :user, :url => registration_url(:user)) do |f|
-      %div{"data-role" => "fieldcontain"}
-        = f.label :first_name
-        = f.text_field :first_name, :placeholder => "First Name"
-      %div{"data-role" => "fieldcontain"}
-        = f.label :last_name
-        = f.text_field :last_name, :placeholder => "Last Name"
-      %div{"data-role" => "fieldcontain"}
-        = f.label :email
-        = f.email_field :email, :placeholder => "Email"
-      %div{"data-role" => "fieldcontain"}
-        = f.label :password
-        = f.password_field :password, :placeholder => "Password"
-      %div{"data-role" => "fieldcontain"}
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, :placeholder => "Confirm Password"
-      %p
-        %strong By clicking submit you agree to our terms and conditions
-      = f.submit "Sign Up"
-
-  %div{"data-role" => "collapsible"}
-    %h3 About Us
-    %p
-      %strong We are a community calendar!
-
-  %div{"data-role" => "collapsible"}
-    %h3 Contact
-    %p
-      %strong
-        Email us at
-        %a{:href => "mailto:info@socialatitude.com"}info@socialatitude.com
-
-
+= render :partial => "devise/shared/links"
