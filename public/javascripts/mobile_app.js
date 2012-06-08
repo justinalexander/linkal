@@ -1,0 +1,3 @@
+$(function(){
+  $.mobile.ajaxEnabled = false;
+});

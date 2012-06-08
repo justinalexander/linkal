@@ -1,17 +1,31 @@
 !!!
 %html
   %head
-    %title sociaLatitude
+    %title SociaLatitude
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-      %link{:href => "http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css", :rel => "stylesheet"}/
-      %script{:src => "http://code.jquery.com/jquery-1.7.1.min.js"}
-      %script{:src => "http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"}
+    %link{:href => "http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css", :rel => "stylesheet"}/
+    %script{:src => "http://code.jquery.com/jquery-1.7.1.min.js"}
+    %script{:src => "/javascripts/mobile_app.js"}
+    %script{:src => "http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"}
+
   %body
-    %div{"data-role" => "page"}
+    %div{"data-role" => "page", "data-theme" => "b"}
+
+      %div{"data-theme" => "d", "data-content-theme" => "b", "data-role" => "header", :class => "ui-grid-b"}
+        %div.ui-block-a
+          - if user_signed_in?
+            = link_to 'Settings', { :controller => :main, :action => :settings }, "data-theme" => :b, "data-role" => :button
+
+        %div.ui-block-b
+          %div{"style"=>"text-align:center"}
+          %img{"src"=>"/images/logo.png"}
+
+        %div.ui-block-c
 
       %div{"data-role" => "content"}
-        %div{"style"=>"text-align:center"}
-          %img{"src"=>"/images/logo.png"}
         = yield
+        = google_analytics
+        - if Rails.env.development?
+          = display_session_hash
       / /content
     / /page

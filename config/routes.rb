@@ -11,6 +11,8 @@ Socialatitude::Application.routes.draw do
     devise_for :venues
   end
 
+  match '/main' => 'main#index', :as => :main_root
+  match '/main/settings' => 'main#settings', :as => :main_settings
 
   match '/dashboard' => 'dashboard#index', :as => :venue_root
   match '/dashboard/events' => 'dashboard#events', :as => :venue_events

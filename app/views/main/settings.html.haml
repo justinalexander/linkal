@@ -1,0 +1,6 @@
+%div{:style => "text-align:center"}
+  %h2 Account Settings
+
+= link_to "Back to Events", {:action => :index}, "data-role" => :button
+
+= link_to "Log Out", destroy_user_session_url
