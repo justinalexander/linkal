@@ -4,7 +4,7 @@ describe WelcomeController do
   let!(:city) { FactoryGirl.create(:city, :name => 'Atlanta') }
   
   it "routes root url to #step_1" do
-      { :get => root_path }.should route_to(:controller => "welcome", :action => "step_1")
+      { :get => '/welcome'}.should route_to(:controller => "welcome", :action => "step_1")
   end
   
   it "goes to step 1 when a city is not already stored in session[:city_id]" do

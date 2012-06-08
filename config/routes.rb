@@ -36,6 +36,8 @@ Socialatitude::Application.routes.draw do
 
   get "/change_city" => 'cities#change_city'
   post "/change_city" => 'cities#change_city'
+  get "/welcome" => 'welcome#step_1', :as => 'step_1'
+  post "/welcome" => 'welcome#step_1', :as => 'step_1'
   post "/welcome/stay_in_touch" => 'welcome#step_2', :as => 'step_2'
   get "/welcome/stay_in_touch" => 'welcome#step_2', :as => 'step_2'
   get "/welcome/find_events" => 'welcome#step_3', :as => 'step_3'
