@@ -51,9 +51,9 @@ Next, you'll need to set up git remotes for the two Heroku projects:
 
 Now you can deploy to staging or production by pushing to the appropriate remote. We use the `staging` branch to deploy to staging, and the `master` branch to deploy to production. Heroku always uses the branch `master` to run your app out of, so you need to push the local branch to a branch named `master` on the remote. Because of this, it's much easier to push a branch named `master` locally, so we use that for production to prevent accidentally pushing staging code into production.
 
-To deploy to staging: 
+To deploy to staging, run the script provided
 
-    git push staging staging:master
+    ./staging_deploy.sh
 
 To deploy to master:
 
