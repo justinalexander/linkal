@@ -1,12 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :ensure_domain, :if => Proc.new { Rails.env.production? }
-  
-  helper :all
-  
-  APP_DOMAIN = 'www.socialatitude.com'
+  layout :layout_by_resource
 
+  before_filter :ensure_domain, :if => Proc.new { Rails.env.production? }
+
+  helper :all
+
+  APP_DOMAIN = 'www.socialatitude.com'
 
   # The default parameters of 0 and a "blank" city name indicate a the 
   # selection of "All Locations".
@@ -23,9 +24,19 @@ class ApplicationController < ActionController::Base
       return City.find(session[:city_id])
     end
   end
-  
+
+  protected
+
+  def layout_by_resource
+    if devise_controller? && resource_name == :user
+      "mobile"
+    else
+      "application"
+    end
+  end
+
   private
-  
+
   def ensure_domain
     if request.env['HTTP_HOST'] != APP_DOMAIN
       # HTTP 301 is a "permanent" redirect

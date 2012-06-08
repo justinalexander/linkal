@@ -3,6 +3,7 @@ Socialatitude::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :users
 
   protocol = Rails.env.production? ? 'https://' : 'http://'
 
@@ -41,5 +42,5 @@ Socialatitude::Application.routes.draw do
   post "/welcome/find_events" => 'welcome#step_3', :as => 'step_3'
   
   #Keep the root url at the bottom of the routes file
-  root :to => 'welcome#step_1'
+  root :to => 'main#index'
 end
