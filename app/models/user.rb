@@ -10,5 +10,12 @@ class User < ActiveRecord::Base
   has_many :user_organizations, :foreign_key => "user_id",
                                 :dependent => :destroy
 
-  has_many :followed_organizations, :through => user_organizations
+  has_many :followed_organizations, :through => :user_organizations,
+                                    :source => :venue
+  def follow!(venue)
+    user_organizations.create!(venue_id: venue.id)
+  end
+  def following?(venue)
+    user_organizations.find_by_venue_id(venue.id)
+  end
 end
