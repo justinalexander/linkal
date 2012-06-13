@@ -12,7 +12,10 @@ Socialatitude::Application.routes.draw do
   end
 
   match '/main' => 'main#index', :as => :main_root
-  match '/main/settings' => 'main#settings', :as => :main_settings
+  match '/settings/organizations' => 'settings#organizations', :as => :settings_organizations
+  match '/settings/email' => 'settings#email', :as => :settings_email
+  match '/settings/account' => 'settings#account', :as => :settings_account
+  match '/settings/follow_organizations' => 'settings#follow', :as => :follow_organizations
 
   match '/dashboard' => 'dashboard#index', :as => :venue_root
   match '/dashboard/events' => 'dashboard#events', :as => :venue_events
@@ -31,6 +34,7 @@ Socialatitude::Application.routes.draw do
   resources :events do
     put :create_attendance, :on => :member
   end
+  resources :user_organizations, only: [:create, :destroy]
 
   match '/contact' => 'high_voltage/pages#show', :id => 'contact', :as => 'contact'
   match '/about'   => 'high_voltage/pages#show', :id => 'about',   :as => 'about'

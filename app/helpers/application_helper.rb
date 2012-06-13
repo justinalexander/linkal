@@ -80,4 +80,11 @@ module ApplicationHelper
     mail_to nil, image_tag('share.email.png'), :subject => "Check out \"#{event.name}\" on SociaLatitude", :body => "#{event.name}\n\n#{event_url(event)}", :encode => "javascript"
   end
 
+  def current_user
+    @current_user ||= User.find_by_remember_token(cookies[:remember_token])
+  end
+
+  def current_user?(user)
+    user == current_user
+  end
 end

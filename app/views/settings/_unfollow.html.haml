@@ -1,0 +1,2 @@
+= form_for(current_user.user_organizations.find_by_venue_id(venue), html: { method: :delete }, remote: true) do |f|
+  = f.submit "Unfollow", "data-inline" => "true", "data-mini" => "true"
