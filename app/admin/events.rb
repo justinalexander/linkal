@@ -52,7 +52,7 @@ ActiveAdmin.register Event do
       row :city
       row :other_category_name
       row :cost do
-        number_to_currency( event.cost ) 
+        number_to_currency( event.cost )
       end
       row :start_at
       row :end_at
@@ -88,7 +88,7 @@ ActiveAdmin.register Event do
       row :attending
       row :maybe_attending
       row :balance do
-        number_to_currency( event.balance )    
+        number_to_currency( event.balance )
       end
     end
     active_admin_comments

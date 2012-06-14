@@ -65,30 +65,11 @@ class Venue < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :location, :billing_location, :category
   validates_acceptance_of :terms_of_service
   validates_inclusion_of :category, :in => valid_category_stubs
-  
-  ## Credit Card Processing 
-  before_validation :set_merchant_customer_id, :on => :create
-  validate :validate_customer_profile_on_create, :on => :create
 
-  # Remove update validations since customers can't update their own CC info
-  # validate :validate_customer_profile_on_update, :on => :update
-  
   # Accessors so we don't store credit card number, only temporary (in memory
   # while we process them).
   attr_accessor :credit_card_number, :credit_card_verification_value, :manual_payment
-  
-  validates :credit_card_verification_value,
-    :length   => { :minimum => 3 },
-    :presence => true,
-    :on       => :create,
-    :unless   => :is_manual_payment?
-  
-  validate :validate_credit_card, :on => :create, :unless => :is_manual_payment?
-  validate :validate_customer_payment_profile_on_create, :on => :create, :unless => :is_manual_payment?
 
-  # Remove update validations since customers can't update their own CC info
-  # validate :validate_customer_payment_profile_on_update, :on => :update
-  
   has_many :events
   belongs_to :location
   belongs_to :billing_location, :class_name => "Location", :foreign_key => "billing_location_id"
@@ -112,23 +93,23 @@ class Venue < ActiveRecord::Base
   def price_per_view
     Venue.category_for_stub(self.category)[:price]
   end
-  
+
   def credit_card_company_name
     CARD_TYPES[credit_card_type]
   end
-  
+
   private
-  
+
   def is_manual_payment?
     self.manual_payment.present?
   end
-  
+
   def set_merchant_customer_id
     # generate a random 20 character ID for use at Authorize.Net
     # we'd use our own primary key, but it's not available until after we've saved
     self.merchant_customer_id = ActiveSupport::SecureRandom.hex(10)
   end
-  
+
   def validate_customer_profile_on_create
     return true if credit_card_type == "test"
     response = GATEWAY.create_customer_profile(
@@ -139,7 +120,7 @@ class Venue < ActiveRecord::Base
     self.customer_profile_id = response.authorization
     errors.add(:base, response.message) unless response.success?
   end
-  
+
   def validate_customer_profile_on_update
     return true if credit_card_type == "test"
     response = GATEWAY.update_customer_profile(
@@ -149,7 +130,7 @@ class Venue < ActiveRecord::Base
         :email                => email } )
     errors.add(:base, response.message) unless response.success?
   end
-  
+
   def bill_to
     { :first_name => first_name,
       :last_name  => last_name,
@@ -159,7 +140,7 @@ class Venue < ActiveRecord::Base
       :zip        => billing_location.zip,
       :country    => billing_location.country }
   end
-  
+
   def credit_card
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
       :first_name         => first_name,
@@ -169,11 +150,11 @@ class Venue < ActiveRecord::Base
       :month              => credit_card_expires_on.month,
       :year               => credit_card_expires_on.year )
   end
-  
+
   def payment
     { :credit_card => credit_card }
   end
-  
+
   def validate_credit_card
     return true if credit_card_type == "test"
     if credit_card.valid?
@@ -200,7 +181,7 @@ class Venue < ActiveRecord::Base
       errors.add(:base, response.message) unless response.success?
     end
   end
-  
+
   def validate_customer_payment_profile_on_update
     return true if credit_card_type == "test"
     if errors.empty? # don't update if preceeding validations have failed
@@ -214,5 +195,5 @@ class Venue < ActiveRecord::Base
       errors.add(:base, response.message) unless response.success?
     end
   end
-  
+
 end
