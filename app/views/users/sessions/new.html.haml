@@ -1,6 +1,6 @@
 %h3 Log In
 
-= form_for(:user, :as => :user, :url => session_url(:user)) do |f|
+= form_for(resource, :as => resource_name, :url => session_url(resource_name)) do |f|
   = devise_error_messages!
 
   %div{"data-role" => "fieldcontain"}

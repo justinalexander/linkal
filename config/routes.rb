@@ -3,12 +3,12 @@ Socialatitude::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
-  devise_for :users
 
   protocol = Rails.env.production? ? 'https://' : 'http://'
 
   scope :protocol => protocol, :constraints => { :protocol => protocol } do
     devise_for :venues
+    devise_for :users
   end
 
   match '/main' => 'main#index', :as => :main_root

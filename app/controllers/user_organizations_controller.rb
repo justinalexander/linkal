@@ -11,7 +11,7 @@ class UserOrganizationsController < ApplicationController
   end
 
   def destroy
-    @venue = Venue.find(params[:id])
+    @venue = UserOrganization.find(params[:id]).venue
     current_user.unfollow!(@venue)
     respond_to do |format|
       format.html { redirect_to :controller => "settings", :action => "follow" }
