@@ -5,4 +5,10 @@ class SettingsController < ApplicationController
   def follow
     @venues = Venue.paginate(page: params[:page])
   end
+  def email
+
+  end
+  def account
+
+  end
 end
