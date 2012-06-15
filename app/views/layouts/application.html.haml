@@ -28,7 +28,7 @@
     = csrf_meta_tag
     :javascript
       try{Typekit.load();}catch(e){}
-    
+
   %body
     %div{:class => layout_container_class }
       %header
@@ -41,7 +41,7 @@
               = link_to 'Log Out', destroy_venue_session_url
             - else
               = render 'layouts/change_city'
-          
+
         = yield :center_header
       #main
         #flash

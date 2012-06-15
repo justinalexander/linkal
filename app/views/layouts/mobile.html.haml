@@ -14,7 +14,7 @@
       %div{"data-theme" => "d", "data-content-theme" => "b", "data-role" => "header", :class => "ui-grid-b"}
         %div.ui-block-a
           - if user_signed_in?
-            = link_to 'Settings', { :controller => :settings, :action => :organizations }, "data-theme" => :b, "data-role" => :button
+            = link_to 'Settings', { :controller => :settings, :action => :follow }, "data-theme" => :b, "data-role" => :button
 
         %div.ui-block-b
           %div{"style"=>"text-align:center"}

@@ -60,6 +60,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_up_path_for(resource)
+    case resource
+    when :User
+      follow_organizations_url(:protocol => :http)
+    else
+      super
+    end
+  end
+
   # Tell Devise to redirect after sign_out
   def after_sign_out_path_for(resource_or_scope)
     root_url(:protocol => 'http')
