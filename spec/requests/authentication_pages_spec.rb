@@ -10,6 +10,12 @@ describe "Authentication" do
     it { should have_selector('h3', text: 'Log In') }
   end
 
+  describe "signup page" do
+    before { visit new_user_registration_path  }
+
+    it { should have_selector('h3', text: 'Sign Up') }
+  end
+
   describe "signin" do
     before { visit new_user_session_path }
 
@@ -37,6 +43,28 @@ describe "Authentication" do
       end
     end
   end
+
+  describe "signup" do
+    before { visit new_user_registration_path }
+
+    describe "with invalid information" do
+      before { click_button "Sign Up" }
+
+      it { should have_selector('h3', text: 'Sign Up') }
+      it { should have_error_message }
+
+    end
+
+    describe "with valid information" do
+      let(:user) { FactoryGirl.build(:user) }
+      before { sign_up user }
+
+      it { should_not have_selector('h3', text: "Sign Up") }
+      it { should_not have_selector('h2', text: "My Events") }
+      it { should have_selector('h2', text: "Account Settings") }
+    end
+  end
+
 
   describe "authorization" do
 

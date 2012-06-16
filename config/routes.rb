@@ -8,7 +8,7 @@ Socialatitude::Application.routes.draw do
 
   scope :protocol => protocol, :constraints => { :protocol => protocol } do
     devise_for :venues
-    devise_for :users
+    devise_for :users, :controllers => { :registrations => "registrations" }
   end
 
   match '/main' => 'main#index', :as => :main_root

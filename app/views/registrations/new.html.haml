@@ -1,15 +1,21 @@
 %h3 Sign Up
 
 = form_for(:user, :as => :user, :url => registration_url(:user)) do |f|
-  %div{"data-role" => "fieldcontain"}
+  = devise_error_messages!
+  %div.ui-hide-label{"data-role" => "fieldcontain"}
+    = f.label :first_name
     = f.text_field :first_name, :placeholder => "First Name"
-  %div{"data-role" => "fieldcontain"}
+  %div.ui-hide-label{"data-role" => "fieldcontain"}
+    = f.label :last_name
     = f.text_field :last_name, :placeholder => "Last Name"
-  %div{"data-role" => "fieldcontain"}
+  %div.ui-hide-label{"data-role" => "fieldcontain"}
+    = f.label :email
     = f.email_field :email, :placeholder => "Email"
-  %div{"data-role" => "fieldcontain"}
+  %div.ui-hide-label{"data-role" => "fieldcontain"}
+    = f.label :password
     = f.password_field :password, :placeholder => "Password"
-  %div{"data-role" => "fieldcontain"}
+  %div.ui-hide-label{"data-role" => "fieldcontain"}
+    = f.label :password_confirmation
     = f.password_field :password_confirmation, :placeholder => "Confirm Password"
   %p
     %strong By clicking submit you agree to our terms and conditions

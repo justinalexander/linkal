@@ -49,7 +49,7 @@ GEM
     activesupport (3.0.10)
     addressable (2.2.6)
     arel (2.0.10)
-    bcrypt-ruby (2.1.4)
+    bcrypt-ruby (3.0.1)
     braintree (2.12.0)
       builder (>= 2.0.0)
     builder (2.1.2)
@@ -62,10 +62,10 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.3.2)
       ffi (~> 1.0.6)
-    devise (1.3.4)
-      bcrypt-ruby (~> 2.1.2)
+    devise (1.5.3)
+      bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
-      warden (~> 1.0.3)
+      warden (~> 1.1)
     diff-lcs (1.1.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -139,7 +139,7 @@ GEM
     multi_json (1.0.3)
     multi_xml (0.4.1)
     nokogiri (1.5.4)
-    orm_adapter (0.0.5)
+    orm_adapter (0.0.7)
     pg (0.13.2)
     polyglot (0.3.2)
     rack (1.2.5)
@@ -213,7 +213,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.33)
-    warden (1.0.6)
+    warden (1.2.1)
       rack (>= 1.0)
     will_paginate (3.0.pre2)
     xpath (0.1.4)
@@ -226,7 +226,7 @@ DEPENDENCIES
   activeadmin
   activemerchant (~> 1.15.0)
   capybara (= 1.1.2)
-  devise (~> 1.3.4)
+  devise (= 1.5.3)
   event-calendar!
   factory_girl_rails
   forgery

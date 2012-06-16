@@ -1,6 +1,7 @@
 %h3 Log In
 
 = form_for(resource, :as => resource_name, :url => session_url(resource_name)) do |f|
+  = devise_error_messages!
   %div.ui-hide-label{"data-role" => "fieldcontain"}
     = f.label :email
     = f.email_field :email, :placeholder => "Email"
