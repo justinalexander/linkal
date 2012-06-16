@@ -32,3 +32,7 @@ group :development, :test do
   gem 'tddium-preview'
   gem 'sqlite3'
 end
+
+group :test do
+  gem 'capybara', '1.1.2'
+end

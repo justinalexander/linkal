@@ -1,7 +1,6 @@
 %h3 Sign Up
 
 = form_for(:user, :as => :user, :url => registration_url(:user)) do |f|
-  = devise_error_messages!
   %div{"data-role" => "fieldcontain"}
     = f.text_field :first_name, :placeholder => "First Name"
   %div{"data-role" => "fieldcontain"}

@@ -6,5 +6,6 @@ FactoryGirl.define do
     password 'password'
     first_name 'Bob'
     last_name 'Smith'
+    remember_token 'token'
   end
 end

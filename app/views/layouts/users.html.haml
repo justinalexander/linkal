@@ -1,4 +1,6 @@
 - content_for :content do
+  -flash.each do |key, value|
+    = content_tag(:div, value, class: "alert alert-#{key}")
   = yield
 
 = render :template => 'layouts/mobile'
