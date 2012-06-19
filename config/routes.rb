@@ -11,7 +11,8 @@ Socialatitude::Application.routes.draw do
     devise_for :users, :controllers => { :registrations => "registrations" }
   end
 
-  match '/main' => 'main#index', :as => :main_root
+  match '/my-events' => 'main#my_events', :as => :my_events
+  match '/all-events' => 'main#all_events', :as => :all_events
   match '/settings/organizations' => 'settings#organizations', :as => :settings_organizations
   match '/settings/email' => 'settings#email', :as => :settings_email
   match '/settings/account' => 'settings#account', :as => :settings_account
@@ -50,5 +51,5 @@ Socialatitude::Application.routes.draw do
   post "/welcome/find_events" => 'welcome#step_3', :as => 'step_3'
   
   #Keep the root url at the bottom of the routes file
-  root :to => 'main#index'
+  root :to => 'main#my_events'
 end

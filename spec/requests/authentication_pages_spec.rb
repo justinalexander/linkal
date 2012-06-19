@@ -32,7 +32,7 @@ describe "Authentication" do
       before { sign_in user }
 
       it { should have_selector('h2', text: "My Events") }
-      it { should have_link('Settings', href: follow_organizations_path) }
+      it { should have_link('Settings', href: settings_organizations_path) }
 
       describe "followed by signout" do
         before do
@@ -61,7 +61,7 @@ describe "Authentication" do
 
       it { should_not have_selector('h3', text: "Sign Up") }
       it { should_not have_selector('h2', text: "My Events") }
-      it { should have_selector('h2', text: "Account Settings") }
+      it { should have_link('My Organizations', href: settings_organizations_path)}
     end
   end
 
@@ -73,7 +73,7 @@ describe "Authentication" do
 
       describe "when attempting to visit a protected page" do
         before do
-          visit follow_organizations_path
+          visit settings_organizations_path
           fill_in "Email",    with: user.email
           fill_in "Password", with: user.password
           click_button "Log In"
@@ -81,7 +81,7 @@ describe "Authentication" do
 
         describe "after signing in" do
           it "should render the desired protected page" do
-            page.should have_selector('h2', text: 'Account Settings')
+            page.should have_link('Follow organizations', href: follow_organizations_path)
           end
 
           describe "when signing in again" do

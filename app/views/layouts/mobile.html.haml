@@ -13,16 +13,17 @@
   %body
     %div{"data-role" => "page", "data-theme" => "b"}
 
-      %div{"data-theme" => "d", "data-content-theme" => "b", "data-role" => "header", :class => "ui-grid-b"}
-        %div.ui-block-a
+      %div{"data-theme" => "d", "data-content-theme" => "b", "data-role" => "header"}
+        %div
           - if user_signed_in?
-            = link_to 'Settings', { :controller => :settings, :action => :follow }, "data-theme" => :b, "data-role" => :button
+            = link_to 'Settings', { :controller => :settings, :action => :organizations },
+                "data-theme" => :b, "data-role" => :button, :class => "ui-btn-right"
+            = link_to 'Events', { :controller => :main, :action => :my_events },
+                "data-theme" => :b, "data-role" => :button, :class => "ui-btn-left"
 
-        %div.ui-block-b
-          %div{"style"=>"text-align:center"}
+        %div{"style"=>"text-align:center"}
           %img{"src"=>"/images/logo_simple.png"}
 
-        %div.ui-block-c
 
       %div{"data-role" => "content"}
         = yield :content
