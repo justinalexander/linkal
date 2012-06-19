@@ -1,4 +1,4 @@
 %ul
   - @venues.each do |v|
     %li
-      = render 'follow_form', :venue => v if signed_in?
+      = render 'follow_form', :venue => v

@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  
+
   cattr_reader :per_page
   @@per_page = 20
 
@@ -43,7 +43,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :start_at, :name, :category, :cost, :description, :venue
   validates_inclusion_of :category, :in => valid_category_stubs
   validates_presence_of :other_category_name, :if => :other_category?
-  
+
   attr_protected :deleted, :attending, :maybe_attending
 
   # Designed to take a timestamp at the beginning of a day, and a timestamp at
@@ -72,10 +72,10 @@ class Event < ActiveRecord::Base
       when /over-(\d+)/   then where(['cost >= ?', $1])
       end
   }
-  
+
   # Pull all events for a city and those for "All locations" which are nil or 0.
   scope :for_city, lambda { |city| where(:city_id => [city.id, 0, nil]) }
-  
+
   default_scope where(:deleted => false).order(:start_at)
 
   def location_name
@@ -84,7 +84,7 @@ class Event < ActiveRecord::Base
 
   def record_view(ip, referer = nil)
     self.views.create!(:ip_address => ip, :http_referer => referer)
-    
+
   end
 
   def other_category?
@@ -107,29 +107,29 @@ class Event < ActiveRecord::Base
   def price_per_view
     Venue.category_for_stub(self.venue.category)[:price]
   end
-  
+
   def to_param
     "#{id}-#{name.parameterize}"
   end
-  
+
   # A Ruby-based (non-ActiveRecord) filter that excludes/rejects events
   # that have a starting time in the local time zone no within the range.
-  # 
+  #
   # ex: if we have 3 events:
   #   [ event 1 starts at 17:00:00 EDT -04:00,
   #     event 2 starts at 21:00:00 EDT -04:00,
   #     event 3 starts at 23:00:00 EDT -04:00 ]
-  # 
+  #
   # and our filter is: 
   #   time_from => 18-00
   #   time_to   => 22-00
-  # 
+  #
   # We would remove any events where the from hour is greater than the start
   # and remove any events where to hour is less than the start.
-  # 
+  #
   # This is done because 22:00:00 EDT -04:00 is actually 00:00:00 GMT on the 
   # next day, and you can't compare hours to hours.
-  # 
+  #
   def self.filter_from_local_time(events, time_from)
     from_hour, from_minute  = time_from.split('-') # skip minute for now
     events.reject { |e| (from_hour.to_i > e.start_at.hour.to_i) }
@@ -140,4 +140,9 @@ class Event < ActiveRecord::Base
     events.reject { |e| (to_hour.to_i   < e.start_at.hour.to_i) }
   end
 
+  def self.from_organizations_followed_by(user)
+    followed_organizations_ids = "SELECT venue_id FROM user_organizations
+                         WHERE user_id = :user_id"
+    where("venue_id IN (#{followed_organizations_ids})", user_id: user.id)
+  end
 end

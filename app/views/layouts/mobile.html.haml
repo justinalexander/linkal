@@ -17,9 +17,9 @@
         %div
           - if user_signed_in?
             = link_to 'Settings', { :controller => :settings, :action => :organizations },
-                "data-theme" => :b, "data-role" => :button, :class => "ui-btn-right"
-            = link_to 'Events', { :controller => :main, :action => :my_events },
                 "data-theme" => :b, "data-role" => :button, :class => "ui-btn-left"
+            = link_to 'Events', { :controller => :main, :action => :my_events },
+                "data-theme" => :b, "data-role" => :button, :class => "ui-btn-right"
 
         %div{"style"=>"text-align:center"}
           %img{"src"=>"/images/logo_simple.png"}

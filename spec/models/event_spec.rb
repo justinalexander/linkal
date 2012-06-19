@@ -113,7 +113,7 @@ describe Event do
         results.each{ |r| r.cost.should be >= 7 }
       end
     end
-    
+
     it "should return results with cost between two values (inclusive) when like '1-7'" do
       Event.with_cost('1-7').tap do |results|
         results.should have(3).events
@@ -173,7 +173,7 @@ describe Event do
     event.update_attributes(:deleted => true)
     event.should_not be_deleted
   end
-    
+
   it "should return only non-deleted events by default" do
     FactoryGirl.create(:event)
     deleted_event = FactoryGirl.create(:event, :deleted => true)
@@ -185,7 +185,7 @@ describe Event do
     event = FactoryGirl.create(:event, :category => 'other', :other_category_name => 'Something Awesome')
     event.category_name.should eq('Something Awesome')
   end
-  
+
   it "should only allow valid category names" do
     event = FactoryGirl.build(:event, :category => 'bogus')
     event.should_not be_valid
@@ -213,5 +213,20 @@ describe Event do
     it "should calculate" do
       event.balance.should eq(2.5)
     end
+  end
+
+  describe "from_organizations_followed_by" do
+    before :each do
+      @org = FactoryGirl.create(:venue)
+      @event = FactoryGirl.create(:event, venue_id: @org.id )
+
+      @user = FactoryGirl.create(:user)
+      @user.user_organizations.create(venue_id: @org.id)
+    end
+
+    it "should include followed organizations events" do
+      Event.from_organizations_followed_by(@user).should include(@event)
+    end
+
   end
 end

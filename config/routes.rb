@@ -13,6 +13,8 @@ Socialatitude::Application.routes.draw do
 
   match '/my-events' => 'main#my_events', :as => :my_events
   match '/all-events' => 'main#all_events', :as => :all_events
+  match '/event-details' => 'main#details', :as => :event_details
+
   match '/settings/organizations' => 'settings#organizations', :as => :settings_organizations
   match '/settings/email' => 'settings#email', :as => :settings_email
   match '/settings/account' => 'settings#account', :as => :settings_account
