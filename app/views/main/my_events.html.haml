@@ -4,7 +4,12 @@
     - @events.each do |e|
       %li
         %a{ :href => event_details_url}
-          %h3
-            = e.name
           %p
-            = e.location_name
+            = "#{e.start_at.strftime("%A %B #{e.start_at.day.ordinalize}")}"
+            %strong
+              = e.name
+          %p
+            %strong
+              = "#{e.attending} attending"
+            %em
+              = "#{e.location_name}, #{e.start_at.strftime("%l:%M%P")}"
