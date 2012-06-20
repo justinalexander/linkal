@@ -1,4 +1,8 @@
 = form_for(current_user.user_organizations.build(venue_id: venue.id), remote: true) do |f|
   = f.hidden_field :venue_id
-  %span= venue.name
-  = f.submit "Follow", "data-inline" => "true", "data-mini" => "true"
+  %h5.ui-li-header
+    = venue.name
+  %p.ui-li-desc
+    = venue.category_name
+  %p.ui-li-aside
+    = f.submit "Follow", "data-inline" => "true", "data-mini" => "true"

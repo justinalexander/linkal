@@ -9,8 +9,10 @@
       %li
         =link_to "Account Info", {:controller => :settings, :action => :account}, "data-role" => :button
 
-  = yield
+  %div
+    = yield
 
-  = link_to "Log Out", destroy_user_session_url
+  %div
+    = link_to "Log Out", destroy_user_session_url
 
 = render :template => 'layouts/mobile'

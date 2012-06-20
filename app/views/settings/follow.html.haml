@@ -1,4 +1,6 @@
-%ul
+%p
+  %em Please choose at least one organization to follow
+%ul#events{"data-role" => :listview}
   - @venues.each do |v|
     %li
       = render 'follow_form', :venue => v

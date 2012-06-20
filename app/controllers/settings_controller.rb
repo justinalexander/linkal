@@ -6,7 +6,9 @@ class SettingsController < ApplicationController
     @venues = Venue.paginate(page: params[:page])
   end
   def organizations
-
+    if current_user.followed_organizations.count == 0
+      redirect_to follow_organizations_path
+    end
   end
   def email
 

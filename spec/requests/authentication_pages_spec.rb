@@ -27,10 +27,24 @@ describe "Authentication" do
 
     end
 
-    describe "with valid information" do
-      let(:user) { FactoryGirl.create(:user) }
-      before { sign_in user }
+    describe "with valid information without following" do
+      before do
+        @user = FactoryGirl.create(:user)
+        sign_in @user
+      end
+      it { should_not have_selector('h2', text: "My Events") }
 
+    end
+    describe "with valid information" do
+      before do
+        @org = FactoryGirl.create(:venue)
+        @event = FactoryGirl.create(:event, venue_id: @org.id )
+
+        @user = FactoryGirl.create(:user)
+        @user.user_organizations.create(venue_id: @org.id)
+
+        sign_in @user
+      end
       it { should have_selector('h2', text: "My Events") }
       it { should have_link('Settings', href: settings_organizations_path) }
 
@@ -69,13 +83,19 @@ describe "Authentication" do
   describe "authorization" do
 
     describe "for non-signed-in users" do
-      let(:user) { FactoryGirl.create(:user) }
+      before do
+        @org = FactoryGirl.create(:venue)
+        @event = FactoryGirl.create(:event, venue_id: @org.id )
+
+        @user = FactoryGirl.create(:user)
+        @user.user_organizations.create(venue_id: @org.id)
+      end
 
       describe "when attempting to visit a protected page" do
         before do
           visit settings_organizations_path
-          fill_in "Email",    with: user.email
-          fill_in "Password", with: user.password
+          fill_in "Email",    with: @user.email
+          fill_in "Password", with: @user.password
           click_button "Log In"
         end
 
@@ -88,8 +108,8 @@ describe "Authentication" do
             before do
               click_link "Log Out"
               click_button "Log In"
-              fill_in "Email",    with: user.email
-              fill_in "Password", with: user.password
+              fill_in "Email",    with: @user.email
+              fill_in "Password", with: @user.password
               click_button "Log In"
             end
 

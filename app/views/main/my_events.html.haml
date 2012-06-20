@@ -1,15 +1,18 @@
 %div{:style => "text-align:center"}
   %h2 My Events
-  %ul{"data-role" => :listview, "data-theme" => :g}
-    - @events.each do |e|
-      %li
-        %a{ :href => event_details_url}
-          %p
-            = "#{e.start_at.strftime("%A %B #{e.start_at.day.ordinalize}")}"
-            %strong
-              = e.name
-          %p
-            %strong
-              = "#{e.attending} attending"
-            %em
-              = "#{e.location_name}, #{e.start_at.strftime("%l:%M%P")}"
+  - if @events.count == 0
+    %em No upcoming events.
+  - else
+    %ul{"data-role" => :listview, "data-theme" => :g}
+      - @events.each do |e|
+        %li
+          %a{ :href => event_details_url}
+            %p
+              = "#{e.start_at.strftime("%A %B #{e.start_at.day.ordinalize}")}"
+              %strong
+                = e.name
+            %p
+              %strong
+                = "#{e.attending} attending"
+              %em
+                = "#{e.location_name}, #{e.start_at.strftime("%l:%M%P")}"
