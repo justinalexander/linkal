@@ -12,7 +12,12 @@ Socialatitude::Application.routes.draw do
   end
 
   match '/my-events' => 'main#my_events', :as => :my_events
+  match '/my-events/calendar(/:year/:month/:day)' => 'main#my_events_calendar', :as => :my_events_calendar,
+        :constraints => {:year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/}
   match '/all-events' => 'main#all_events', :as => :all_events
+  match '/all-events/calendar(/:year/:month/:day)' => 'main#all_events_calendar', :as => :all_events_calendar,
+        :constraints => {:year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/}
+
   match '/event-details' => 'main#details', :as => :event_details
 
   match '/settings/organizations' => 'settings#organizations', :as => :settings_organizations

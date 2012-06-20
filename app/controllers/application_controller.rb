@@ -37,6 +37,12 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def ensure_followed_organizations!
+    if current_user.followed_organizations.count == 0
+      redirect_to follow_organizations_path
+    end
+  end
+
   def ensure_domain
     if request.env['HTTP_HOST'] != APP_DOMAIN
       # HTTP 301 is a "permanent" redirect

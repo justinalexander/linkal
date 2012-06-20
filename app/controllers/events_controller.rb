@@ -2,15 +2,17 @@ class EventsController < ApplicationController
   before_filter :authenticate_venue!, :only => [:new, :create]
   before_filter :authenticate_venue_or_admin!, :only => [:edit, :update, :destroy]
 
+  layout 'application'
+
   # GET /events
   # GET /events.xml
   def index
     @events = Event.upcoming # default to all upcoming events
-    
+
     if params.slice(:from, :to).present?
       from = params[:from].try(:split, '/') # month / day / year
       to   = params[:to].try(:split, '/') # month / day / year
-      
+
       if from.present? and to.present?
         return redirect_to events_between_dates_url(from[2], from[0], from[1], to[2], to[0], to[1], params.slice(*search_params))
       elsif from.present?

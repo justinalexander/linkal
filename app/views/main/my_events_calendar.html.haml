@@ -1,0 +1,9 @@
+- content_for :view_buttons do
+  %p
+    = link_to "List", my_events_url, "data-role" => :button,
+      "data-inline" => "true", "data-mini" => "true"
+    = link_to "Calendar", my_events_calendar_url, "data-role" => :button,
+      "data-inline" => "true", "data-mini" => "true"
+%p
+  %input#mydate{:name => "mydate", :type => "date", "data-role" => "datebox",
+    "data-options" => '{"mode":"calbox", "useInline": true, "hideInput": true, "useSetButton":false, "useImmediate":true, "clickEvent": "click"}'}

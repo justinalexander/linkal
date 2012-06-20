@@ -7,6 +7,9 @@
       %li
         =link_to "All Events", {:controller => :main, :action => :all_events}, "data-role" => :button
 
+
+  = yield :view_buttons
+
   = yield
 
 = render :template => 'layouts/mobile'

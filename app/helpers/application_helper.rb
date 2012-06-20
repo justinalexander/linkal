@@ -7,6 +7,13 @@ module ApplicationHelper
     super(options)
   end
 
+  def events_url
+    if session["events_url"].nil?
+      my_events_url
+    else
+      session["events_url"]
+    end
+  end
   def link_to_pivotal(link_text, story_number, attributes = {}, &block)
     default_attributes = {
       :confirm => "Not yet implemented. Click OK to view Pivotal story or Cancel to stay on this page." }
