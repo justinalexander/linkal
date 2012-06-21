@@ -7,7 +7,7 @@ $(function(){
       var day = parseInt(day_text);
       if(!isNaN(day)){
         var day_has_event = $.grep(month_events, function(d){
-          return d.day === day;
+          return d === day;
         }).length > 0;
         if(day_has_event){
           if($(date_box).hasClass('ui-btn-up-d')){
