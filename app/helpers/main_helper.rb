@@ -8,6 +8,9 @@ module MainHelper
     end.to_json
   end
   def format_date(date)
+    if date.nil?
+      return ''
+    end
     date.strftime("%A %B #{date.day.ordinalize}")
   end
 end
