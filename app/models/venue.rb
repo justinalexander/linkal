@@ -98,6 +98,12 @@ class Venue < ActiveRecord::Base
     CARD_TYPES[credit_card_type]
   end
 
+ def self.from_organizations_followed_by(user)
+    followed_organizations_ids = "SELECT venue_id FROM user_organizations
+                         WHERE user_id = :user_id"
+    where("id IN (#{followed_organizations_ids})", user_id: user.id)
+  end
+
   private
 
   def is_manual_payment?

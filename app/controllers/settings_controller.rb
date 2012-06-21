@@ -7,6 +7,8 @@ class SettingsController < ApplicationController
   end
   def organizations
     ensure_followed_organizations!
+
+    @venues = Venue.from_organizations_followed_by current_user
   end
   def email
 

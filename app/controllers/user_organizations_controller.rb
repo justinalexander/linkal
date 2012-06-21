@@ -4,18 +4,21 @@ class UserOrganizationsController < ApplicationController
   def create
     @venue = Venue.find(params[:user_organization][:venue_id])
     current_user.follow!(@venue)
-    respond_to do |format|
-      format.html { redirect_to :controller => "settings", :action => "follow" }
-      format.js
-    end
+    redirect_to :controller => "settings", :action => "follow"
   end
 
   def destroy
     @venue = UserOrganization.find(params[:id]).venue
     current_user.unfollow!(@venue)
-    respond_to do |format|
-      format.html { redirect_to :controller => "settings", :action => "follow" }
-      format.js
-    end
+    redirect_to :controller => "settings", :action => "follow"
   end
+
+  def endorsed
+
+  end
+
+  def company_only
+
+  end
+
 end

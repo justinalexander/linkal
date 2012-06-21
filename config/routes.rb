@@ -42,7 +42,10 @@ Socialatitude::Application.routes.draw do
   resources :events do
     put :create_attendance, :on => :member
   end
-  resources :user_organizations, only: [:create, :destroy]
+  resources :user_organizations do
+    put :company_only
+    put :endorsed
+  end
 
   match '/contact' => 'high_voltage/pages#show', :id => 'contact', :as => 'contact'
   match '/about'   => 'high_voltage/pages#show', :id => 'about',   :as => 'about'
