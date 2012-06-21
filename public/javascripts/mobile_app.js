@@ -1,5 +1,4 @@
-$(function(){
-  $.mobile.ajaxEnabled = false;
+$(document).on('pageinit', function(){
   $('input[placeholder], textarea[placeholder]').placeholder();
   if($('#mydate').length > 0){
     $('[class*="ui-btn-up"]').each(function(idx, date_box){
@@ -19,15 +18,19 @@ $(function(){
     });
 
     $('#mydate').bind('datebox', function(sender, e) {
-      var year, month, day;
+      var year, month, day, url;
       if ( e.method === 'set' ) {
         sender.stopImmediatePropagation()
         year = e.date.getFullYear();
         month = e.date.getMonth() + 1;
         day = e.date.getDate();
-        window.location = calendar_url + '/' + year + '/' + month + '/' + day;
+        url = calendar_url + '/' + year + '/' + month + '/' + day;
+        $.mobile.loadPage(url, {
+          showLoadMsg: true,
+          reloadPage: true
+        });
       }
     });
   }
-  
+
 });
