@@ -1,0 +1,3 @@
+%p
+  %input#mydate{:name => "mydate", :type => "date", "data-role" => "datebox",
+    "data-options" => "{\"defaultValue\": [#{@current_date.year},#{@current_date.month - 1},#{@current_date.day}],\"mode\":\"calbox\", \"useInline\": true, \"hideInput\": true, \"useSetButton\":false, \"useImmediate\":true, \"themeDate\":\"d\", \"themeDatePick\":\"b\", \"themeDateToday\":\"d\"}"}

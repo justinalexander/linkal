@@ -4,3 +4,7 @@
       "data-inline" => "true", "data-mini" => "true"
     = link_to "Calendar", all_events_calendar_url, "data-role" => :button,
       "data-inline" => "true", "data-mini" => "true"
+%div{:style => "text-align:center"}
+  %h2 All Events
+
+  = render 'events_list', :events => @events, :empty_text => "No upcoming events."

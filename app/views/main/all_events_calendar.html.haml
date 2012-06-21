@@ -4,3 +4,12 @@
       "data-inline" => "true", "data-mini" => "true"
     = link_to "Calendar", all_events_calendar_url, "data-role" => :button,
       "data-inline" => "true", "data-mini" => "true"
+
+= render 'calendar'
+= render 'events_list', :events => @date_events, :empty_text => "No events for selected day."
+
+%script
+  var calendar_url = "#{all_events_calendar_url}";
+  var current_month = "#{@current_date.month}/#{@current_date.year}";
+  var current_date = "#{@current_date}";
+  var month_events = #{events_as_json(@month_events).html_safe};

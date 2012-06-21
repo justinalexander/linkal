@@ -4,9 +4,8 @@
       "data-inline" => "true", "data-mini" => "true"
     = link_to "Calendar", my_events_calendar_url, "data-role" => :button,
       "data-inline" => "true", "data-mini" => "true"
-%p
-  %input#mydate{:name => "mydate", :type => "date", "data-role" => "datebox",
-    "data-options" => "{\"defaultValue\": [#{@current_date.year},#{@current_date.month - 1},#{@current_date.day}],\"mode\":\"calbox\", \"useInline\": true, \"hideInput\": true, \"useSetButton\":false, \"useImmediate\":true, \"themeDate\":\"d\", \"themeDatePick\":\"b\", \"themeDateToday\":\"d\"}"}
+
+= render 'calendar'
 = render 'events_list', :events => @date_events, :empty_text => "No events for selected day."
 
 %script
