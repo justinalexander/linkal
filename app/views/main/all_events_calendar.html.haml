@@ -4,7 +4,8 @@
       "data-inline" => "true", "data-mini" => "true", "data-ajax" => :false
     = link_to "Calendar", all_events_calendar_url, "data-role" => :button,
       "data-inline" => "true", "data-mini" => "true", "data-ajax" => :false
-
+%div{:style => "text-align:center"}
+  %h2 All Events
 = render 'calendar'
 = render 'events_list', :events => @date_events, :empty_text => "No events for selected day."
 
