@@ -1,0 +1,18 @@
+- if events.count == 0
+  %em
+    = empty_text
+- else
+  %ul{"data-role" => :listview, "data-theme" => :g}
+    - events.each do |e|
+      %li
+        %a{ :href => event_details_url}
+          %p
+            = "#{format_date(e.start_at)} - #{format_date(e.end_at)}"
+          %p
+            %strong
+              = e.name
+          %p
+            %strong
+              = "#{e.attending} attending"
+            %em
+              = "#{e.location_name}, #{e.start_at.strftime("%l:%M%P")}"

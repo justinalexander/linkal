@@ -6,4 +6,11 @@
       "data-inline" => "true", "data-mini" => "true"
 %p
   %input#mydate{:name => "mydate", :type => "date", "data-role" => "datebox",
-    "data-options" => '{"mode":"calbox", "useInline": true, "hideInput": true, "useSetButton":false, "useImmediate":true, "clickEvent": "click"}'}
+    "data-options" => "{\"defaultValue\": [#{@current_date.year},#{@current_date.month - 1},#{@current_date.day}],\"mode\":\"calbox\", \"useInline\": true, \"hideInput\": true, \"useSetButton\":false, \"useImmediate\":true, \"themeDate\":\"d\", \"themeDatePick\":\"b\", \"themeDateToday\":\"d\"}"}
+= render 'events_list', :events => @date_events, :empty_text => "No events for selected day."
+
+%script
+  var calendar_url = "#{my_events_calendar_url}";
+  var current_month = "#{@current_date.month}/#{@current_date.year}";
+  var current_date = "#{@current_date}";
+  var month_events = #{events_as_json(@month_events).html_safe};
