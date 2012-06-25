@@ -8,8 +8,8 @@ ActiveAdmin.register Event do
       f.input :city
       f.input :other_category_name
       f.input :cost
-      f.input :start_at
-      f.input :end_at
+      f.input :start_at, :as => :string, :wrapper_html => {:class => "datepicker"}
+      f.input :end_at, :as => :string, :wrapper_html => {:class => "datepicker"}
       f.input :description
       f.input :location
     end
