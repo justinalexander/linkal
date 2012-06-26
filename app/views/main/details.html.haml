@@ -29,7 +29,7 @@
 %p
   = twitter_link_tag(@event)
   = share_by_email_tag(@event)
-  = link_to image_tag('share.cal.png'), event_url(@event, :format => 'ics' )
+  = link_to image_tag('share.cal.png'), event_url(@event, :format => 'ics' ), :target => :blank
   %br
   = facebook_like
 

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:create_attendance]
+  skip_before_filter :verify_authenticity_token, :only => [:create_attendance, :show]
 
   before_filter :authenticate_venue!, :only => [:new, :create]
   before_filter :authenticate_venue_or_admin!, :only => [:edit, :update, :destroy]
