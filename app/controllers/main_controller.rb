@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => [:my_events, :my_events_calendar]
   layout 'events'
 
   def my_events

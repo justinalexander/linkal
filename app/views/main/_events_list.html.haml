@@ -5,7 +5,7 @@
   %ul{"data-role" => :listview, "data-theme" => :g}
     - events.each do |e|
       %li
-        %a{ :href => event_details_url(e.id)}
+        %a{ :href => event_details_url(e.id), "data-ajax" => :false}
           %p
             = "#{format_date(e.start_at)} - #{format_date(e.end_at)}"
           %p

@@ -33,6 +33,17 @@
   %br
   = facebook_like
 
+%h3 Let Us Know!
+%p Do you plan on attending this event?
+%p#attending-message{:class => 'grey-box', :class => :hide}
+  %em Thanks! We hope to see you there.
+
+%p
+  = link_to 'Absolutely! Count me in.', '#', "data-role" => :button,
+      "data-mini" => :true, "data-inline" => :true, "data-rel" => :dialog, :id => 'attending-yes'
+  = link_to 'I might! I have to take a look at my calendar.', '#', "data-role" => :button,
+      "data-mini" => :true, "data-inline" => :true, "data-rel" => :dialog, :id => 'attending-maybe'
+
 %h3 Description
 %p
   = @event.description
@@ -46,3 +57,7 @@
 #{@location.city}, #{@location.state} #{@location.zip}
 %h4 Phone
 %p= number_to_phone(@event.phone_number)
+
+:javascript
+  var yes_attendance_url = "#{create_attendance_event_url(@event, :attending => 'yes')}";
+  var maybe_attendance_url = "#{create_attendance_event_url(@event, :attending => 'maybe')}";

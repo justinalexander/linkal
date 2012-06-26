@@ -35,4 +35,28 @@ $(document).on('pageinit', function() {
       }
     });
   });
+
+  $('#attending-yes').on('click', function(e){
+    e.preventDefault();
+    $.ajax({
+      type: "PUT",
+      url: yes_attendance_url,
+    }).done(function( msg ) {
+      $('#attending-yes').addClass('ui-disabled');
+    $('#attending-message').removeClass('hide');
+
+    $('#attending-yes').off('click');
+    });
+  });
+  $('#attending-maybe').on('click', function(e){
+    $.ajax({
+      type: "PUT",
+      url: maybe_attendance_url,
+    }).done(function( msg ) {
+      $('#attending-maybe').addClass('ui-disabled');
+      $('#attending-message').removeClass('hide');
+
+      $('#attending-maybe').off('click');    });
+  });
+
 });
