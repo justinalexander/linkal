@@ -18,6 +18,9 @@ Socialatitude::Application.routes.draw do
   match '/all-events/calendar(/:year/:month/:day)' => 'main#all_events_calendar', :as => :all_events_calendar,
         :constraints => {:year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/}
 
+  match 'about-us' => 'users#about', :as => :mobile_about
+  match 'contact-info' => 'users#contact', :as => :mobile_contact
+
   match '/event-details' => 'main#details', :as => :event_details
 
   match '/settings/organizations' => 'settings#organizations', :as => :settings_organizations

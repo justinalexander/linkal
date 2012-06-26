@@ -31,8 +31,11 @@
 
       %div{"data-role" => "content"}
         = yield :content
-        = google_analytics
-        - if Rails.env.development?
-          = display_session_hash
       / /content
+
+      %div{"data-role" => "footer"}
+        = yield :footer
+        = google_analytics
+      - if Rails.env.development?
+        = display_session_hash
     / /page
