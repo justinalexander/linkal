@@ -21,7 +21,7 @@ Socialatitude::Application.routes.draw do
   match 'about-us' => 'users#about', :as => :mobile_about
   match 'contact-info' => 'users#contact', :as => :mobile_contact
 
-  match '/event-details' => 'main#details', :as => :event_details
+  match '/event-details/:id' => 'main#details', :as => :event_details
 
   match '/settings/organizations' => 'settings#organizations', :as => :settings_organizations
   match '/settings/email' => 'settings#email', :as => :settings_email

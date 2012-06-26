@@ -1,1 +1,39 @@
-%h2 Details
+%p
+  %strong
+    = @event.name
+%p
+  %strong
+    %em Date
+  = display_date(@event)
+%p
+  %strong
+    %em Start
+  = @event.start_at.to_s(:time)
+  %strong
+    %em End
+  = @event.end_at.to_s(:time) if @event.end_at.present?
+%p
+  %strong
+    %em Type
+  = @event.category_name
+  %strong
+    %em Cost
+  = @event.cost.zero? ? 'Free' : number_to_currency(@event.cost)
+%p
+  %strong
+    %em Attending
+  = @event.attending
+
+%h3 Description
+%p
+  = @event.description
+%h4
+  = @location.name
+= @location.address_1
+- if @location.address_2.present?
+  %br/
+  = @location.address_2
+%br/
+#{@location.city}, #{@location.state} #{@location.zip}
+%h4 Phone
+%p= number_to_phone(@event.phone_number)

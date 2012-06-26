@@ -32,6 +32,8 @@ class MainController < ApplicationController
   end
 
   def details
+    @event = Event.find(params[:id])
+    @location = @event.location_id? ? @event.location : @event.venue.location
 
   end
 
