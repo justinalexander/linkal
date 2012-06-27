@@ -7,6 +7,11 @@ describe User do
   end
   subject {@user}
 
+  describe "default email notifications" do
+    subject {@user.weekly_email}
+    it {should be_true}
+  end
+
   describe "followed organizations" do
 
     let(:venue) { FactoryGirl.create(:venue)}

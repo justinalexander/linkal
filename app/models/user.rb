@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :followed_organizations, :through => :user_organizations,
                                     :source => :venue
 
+  before_save :default_values
+
   def follow!(venue)
     user_organizations.create!(venue_id: venue.id)
   end
@@ -26,5 +28,8 @@ class User < ActiveRecord::Base
     def password_required?
       self.new_record?
     end
-
+  private
+    def default_values
+      self.weekly_email = true if self.weekly_email.nil?
+    end
 end
