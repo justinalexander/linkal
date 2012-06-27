@@ -11,6 +11,10 @@
 %div
   = f.label :category
   = f.select :category, Event.categories_for_select, :prompt => 'Please select'
+%div
+  = f.label :business_relation
+  = f.select :business_relation, Event.relations_for_select, :prompt => 'Please select'
+
 .other_category_name{ :class => f.object.other_category? ? nil : 'hide' }
   = f.label :other_category_name, 'Custom Category'
   = f.text_field :other_category_name, :class => 'text'

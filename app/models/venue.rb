@@ -62,7 +62,7 @@ class Venue < ActiveRecord::Base
     CATEGORIES.detect{ |c| c[:stub] == stub }
   end
 
-  validates_presence_of :first_name, :last_name, :location, :billing_location, :category
+  validates_presence_of :first_name, :last_name, :organization_name, :location, :billing_location, :category
   validates_acceptance_of :terms_of_service
   validates_inclusion_of :category, :in => valid_category_stubs
 
@@ -79,7 +79,7 @@ class Venue < ActiveRecord::Base
   accepts_nested_attributes_for :billing_location
 
   def name
-    "#{first_name} #{last_name}"
+    organization_name.nil? ? "#{first_name} #{last_name}" : organization_name
   end
 
   def balance

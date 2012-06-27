@@ -24,6 +24,17 @@ class Event < ActiveRecord::Base
     CATEGORIES.map{ |c| [c[:name], c[:stub]] }
   end
 
+  BUSINESS_RELATIONS = [
+    {:name => 'Company\'s Own Event', :stub => 1, :short_desc => ''},
+    {:name => 'Company Endorsed Event', :stub => 2, :short_desc => 'Endorsed'}
+  ]
+  def self.valid_relation_stubs
+    BUSINESS_RELATIONS.map{ |r| r[:stub] }
+  end
+  def self.relations_for_select
+    BUSINESS_RELATIONS.map{|r| [r[:name], r[:stub].to_s]}
+  end
+
   def self.cost_options_for_select
     [ ['Free', 'free'],
       ['Under $5', 'under-5'],
@@ -40,8 +51,9 @@ class Event < ActiveRecord::Base
   # can't use :all_blank because "state" is a drop-down pre-populated with "AL":
   accepts_nested_attributes_for :location, :reject_if => proc { |attributes| attributes['name'].blank? }
 
-  validates_presence_of :start_at, :name, :category, :cost, :description, :venue
+  validates_presence_of :start_at, :name, :category, :cost, :description, :venue, :business_relation
   validates_inclusion_of :category, :in => valid_category_stubs
+  validates_inclusion_of :business_relation, :in => valid_relation_stubs
   validates_presence_of :other_category_name, :if => :other_category?
 
   attr_protected :deleted, :attending, :maybe_attending
@@ -93,6 +105,18 @@ class Event < ActiveRecord::Base
 
   def category_name
     other_category? ? self.other_category_name : CATEGORIES.detect{ |c| c[:stub] == self.category }[:name]
+  end
+
+  def relation_name
+    relation = BUSINESS_RELATIONS.detect{ |r| r[:stub] == self.business_relation}
+    relation.nil? ? '' : relation[:name]
+  end
+  def relation_short_desc
+    relation = BUSINESS_RELATIONS.detect{ |r| r[:stub] == self.business_relation}
+    relation.nil? ? '' : relation[:short_desc]
+  end
+  def organization_desc
+    "#{venue.name} #{relation_short_desc}"
   end
 
   def phone_number

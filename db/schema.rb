@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627061729) do
+ActiveRecord::Schema.define(:version => 20120627110752) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20120627061729) do
     t.integer  "attending",           :default => 0
     t.integer  "maybe_attending",     :default => 0
     t.integer  "city_id"
+    t.integer  "business_relation"
   end
 
   add_index "events", ["city_id"], :name => "index_events_on_city_id"
@@ -160,6 +161,7 @@ ActiveRecord::Schema.define(:version => 20120627061729) do
     t.string   "credit_card_display_number"
     t.string   "credit_card_type"
     t.integer  "billing_location_id"
+    t.string   "organization_name"
   end
 
   add_index "venues", ["email"], :name => "index_venues_on_email", :unique => true

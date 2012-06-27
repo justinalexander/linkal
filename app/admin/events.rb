@@ -5,6 +5,7 @@ ActiveAdmin.register Event do
       f.input :name
       f.input :venue
       f.input :category, :collection => Event.categories_for_select
+      f.input :business_relation, :as => :select, :collection => Event.relations_for_select
       f.input :city
       f.input :other_category_name
       f.input :cost
@@ -29,6 +30,9 @@ ActiveAdmin.register Event do
     column :category do |event|
       event.category_name
     end
+    column :relation do |event|
+      event.relation_name
+    end
     column :cost do |event|
       number_to_currency event.cost
     end
@@ -49,6 +53,9 @@ ActiveAdmin.register Event do
       row :name
       row :venue
       row :category
+      row :relation do
+        event.relation_name
+      end
       row :city
       row :other_category_name
       row :cost do
