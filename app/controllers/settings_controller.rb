@@ -10,9 +10,7 @@ class SettingsController < ApplicationController
 
     @venues = Venue.from_organizations_followed_by current_user
   end
-  def email
 
-  end
   def account
 
   end

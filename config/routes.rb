@@ -24,7 +24,6 @@ Socialatitude::Application.routes.draw do
   match '/event-details/:id' => 'main#details', :as => :event_details
 
   match '/settings/organizations' => 'settings#organizations', :as => :settings_organizations
-  match '/settings/email' => 'settings#email', :as => :settings_email
   match '/settings/account' => 'settings#account', :as => :settings_account
   match '/settings/follow_organizations' => 'settings#follow', :as => :follow_organizations
 
@@ -42,6 +41,8 @@ Socialatitude::Application.routes.draw do
         :as => :events_between_dates,
         :constraints => { :from_year => /\d{4}/, :from_month => /\d{1,2}/, :from_day => /\d{1,2}/,
                           :to_year   => /\d{4}/, :to_month   => /\d{1,2}/, :to_day   => /\d{1,2}/ }
+
+  resource :email_notifications, :only => [:edit, :update]
   resources :events do
     put :create_attendance, :on => :member
   end

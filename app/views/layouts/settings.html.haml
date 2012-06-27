@@ -5,7 +5,7 @@
       %li
         =link_to "My Organizations", {:controller => :settings, :action => :organizations}, "data-role" => :button
       %li
-        =link_to "Email Settings", {:controller => :settings, :action => :email}, "data-role" => :button
+        =link_to "Email Settings", edit_email_notifications_url, "data-role" => :button
       %li
         =link_to "Account Info", {:controller => :settings, :action => :account}, "data-role" => :button
 

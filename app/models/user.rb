@@ -5,14 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :weekly_email
 
   has_many :user_organizations, :foreign_key => "user_id"
 
   has_many :followed_organizations, :through => :user_organizations,
                                     :source => :venue
-
-  before_save :create_remember_token
 
   def follow!(venue)
     user_organizations.create!(venue_id: venue.id)
@@ -24,10 +22,9 @@ class User < ActiveRecord::Base
     user_organizations.find_by_venue_id(venue.id)
   end
 
-  private
-
-    def create_remember_token
-      self.remember_token = SecureRandom.urlsafe_base64
+  protected
+    def password_required?
+      self.new_record?
     end
 
 end
