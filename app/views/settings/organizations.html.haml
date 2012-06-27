@@ -8,6 +8,10 @@
         %form
           %input#company_only{:type => :checkbox, "data-theme" => :d, "data-mini" => :true}
           %label{:for => :company_only} Company Only Events
+        %form
+          %input#endorsed{:type => :checkbox, "data-theme" => :d, "data-mini" => :true}
+          %label{:for => :endorsed} Endorsed Events
+
 
 %p
   = link_to 'Follow more organizations', { :controller => :settings, :action => :follow },
