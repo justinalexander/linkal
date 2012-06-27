@@ -42,6 +42,9 @@ Socialatitude::Application.routes.draw do
         :constraints => { :from_year => /\d{4}/, :from_month => /\d{1,2}/, :from_day => /\d{1,2}/,
                           :to_year   => /\d{4}/, :to_month   => /\d{1,2}/, :to_day   => /\d{1,2}/ }
 
+  resource :users do
+    put :update_details, :update_password
+  end
   resource :email_notifications, :only => [:edit, :update]
   resources :events do
     put :create_attendance, :on => :member
@@ -63,7 +66,7 @@ Socialatitude::Application.routes.draw do
   get "/welcome/stay_in_touch" => 'welcome#step_2', :as => 'step_2'
   get "/welcome/find_events" => 'welcome#step_3', :as => 'step_3'
   post "/welcome/find_events" => 'welcome#step_3', :as => 'step_3'
-  
+
   #Keep the root url at the bottom of the routes file
   root :to => 'main#my_events'
 end

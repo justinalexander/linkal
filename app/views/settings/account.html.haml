@@ -1,0 +1,24 @@
+= devise_error_messages!
+
+%div{"data-role" => :collapsible}
+  %h3 Change Details
+  =form_for(current_user, :url => update_details_users_url, :html => { :method => :put, :class => 'ui-hide-label' }) do |f|
+    = f.label :first_name
+    = f.text_field :first_name
+    = f.label :last_name
+    = f.text_field :last_name
+    = f.label :email
+    = f.email_field :email
+
+    = f.submit "Update details", "data-inline" => :true
+%div{"data-role" => :collapsible}
+  %h3 Change Password
+  =form_for(current_user, :url => update_password_users_url, :html => { :method => :put, :class => 'ui-hide-label'  }) do |f|
+    = f.label :current_password
+    = f.password_field :current_password, :autocomplete => "off", :placeholder => 'Current Password'
+    = f.label :password
+    = f.password_field :password, :autocomplete => "off", :placeholder => 'New Password'
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, :placeholder => 'Confirm New Password'
+
+    = f.submit "Update password", "data-inline" => :true
