@@ -20,8 +20,8 @@
     %em Type
   = @event.category_name
   %strong
-    %em Cost
-  = @event.cost.zero? ? 'Free' : number_to_currency(@event.cost)
+    %em Industry
+  = @event.venue.category_name
 %p
   %strong
     %em Attending
@@ -30,7 +30,6 @@
   = twitter_link_tag(@event)
   = share_by_email_tag(@event)
   = link_to image_tag('share.cal.png'), event_url(@event, :format => 'ics' ), :target => :blank
-  %br
   = facebook_like
 
 %h3 Let Us Know!
@@ -39,9 +38,9 @@
   %em Thanks! We hope to see you there.
 
 %p
-  = link_to 'Absolutely! Count me in.', '#', "data-role" => :button,
+  = link_to 'Yes', '#', "data-role" => :button,
       "data-mini" => :true, "data-inline" => :true, "data-rel" => :dialog, :id => 'attending-yes'
-  = link_to 'I might! I have to take a look at my calendar.', '#', "data-role" => :button,
+  = link_to 'Maybe', '#', "data-role" => :button,
       "data-mini" => :true, "data-inline" => :true, "data-rel" => :dialog, :id => 'attending-maybe'
 
 %h3 Description
