@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => [:update_details, :update_password]
 
   def update_details
     current_user.update_attributes(
