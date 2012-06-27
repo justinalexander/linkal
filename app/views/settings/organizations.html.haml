@@ -1,4 +1,4 @@
-%h2 My Organizations
+%h2 My Groups
 %ul#events
   - @venues.each do |venue|
     %li{"data-role" => :collapsible, "data-theme" => "c"}
@@ -7,12 +7,11 @@
       %p.ui-li-desc
         %form
           %input#company_only{:type => :checkbox, "data-theme" => :d, "data-mini" => :true}
-          %label{:for => :company_only} Company Only Events
+          %label{:for => :company_only}  Group Only Events
         %form
           %input#endorsed{:type => :checkbox, "data-theme" => :d, "data-mini" => :true}
-          %label{:for => :endorsed} Endorsed Events
-
+          %label{:for => :endorsed} Group Endorsed Events
 
 %p
-  = link_to 'Follow more organizations', { :controller => :settings, :action => :follow },
+  = link_to 'Edit groups', { :controller => :settings, :action => :follow },
     "data-role" => "button", "data-mini" => true, "data-inline" => "true"
