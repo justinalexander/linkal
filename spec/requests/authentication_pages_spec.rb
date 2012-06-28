@@ -75,7 +75,7 @@ describe "Authentication" do
 
       it { should_not have_selector('h3', text: "Sign Up") }
       it { should_not have_selector('h2', text: "My Events") }
-      it { should have_link('My Organizations', href: settings_organizations_path)}
+      it { should have_link('My Groups', href: settings_organizations_path)}
     end
   end
 
@@ -101,7 +101,7 @@ describe "Authentication" do
 
         describe "after signing in" do
           it "should render the desired protected page" do
-            page.should have_link('Follow more organizations', href: follow_organizations_path)
+            page.should have_link('Edit groups', href: follow_organizations_path)
           end
 
           describe "when signing in again" do

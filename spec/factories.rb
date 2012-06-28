@@ -4,6 +4,7 @@ FactoryGirl.define do
     start_at { 1.hour.from_now }
 
     category 'visual-performing-arts'
+    business_relation 1
     cost 0
     description { |ee|  "Description for #{ee.name}" }
 
@@ -15,6 +16,7 @@ FactoryGirl.define do
     password 'password'
     first_name 'Bob'
     last_name 'Smith'
+    organization_name 'Org'
     category 'corporation'
 
     association :location
