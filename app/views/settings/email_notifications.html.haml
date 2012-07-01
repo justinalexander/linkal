@@ -1,7 +1,7 @@
 %h3
-  Email notifications of events
+  Email Settings
 =form_for(current_user, :url => email_notifications_url, :html => { :method => :put }) do |f|
   = f.check_box :weekly_email, "data-theme" => :d, "data-mini" => :true
-  = f.label :weekly_email, "Weekly Events Updates"
+  = f.label :weekly_email, "Event Updates for Groups I Follow"
 
-  = f.submit "Update email notifications"
+  = f.submit "Save Email Settings"
