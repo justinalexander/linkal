@@ -1,17 +1,16 @@
 %h2 My Groups
 %ul#events
-  - @venues.each do |venue|
+  - @organizations.each do |org|
     %li{"data-role" => :collapsible, "data-theme" => "c"}
       %h5.ui-li-header
-        = venue.name
+        = org.venue.name
       %p.ui-li-desc
-        %form
-          %input#company_only{:type => :checkbox, "data-theme" => :d, "data-mini" => :true}
-          %label{:for => :company_only}  Group Only Events
-        %form
-          %input#endorsed{:type => :checkbox, "data-theme" => :d, "data-mini" => :true}
-          %label{:for => :endorsed} Group Endorsed Events
-
+        =form_for(org, :url => {:action => :company_only, :controller => :user_organizations, :user_organization_id => org.id}, :method => :put) do |f|
+          = f.check_box :follow_company_events, "data-theme" => :d, "data-mini" => :true
+          = f.label :follow_company_events, "Group Only Events"
+        =form_for(org, :url => {:action => :endorsed, :controller => :user_organizations, :user_organization_id => org.id}, :method => :put ) do |f|
+          = f.check_box :follow_endorsed_events, "data-theme" => :d, "data-mini" => :true
+          = f.label :follow_endorsed_events, "Group Endorsed Events"
 %p
   = link_to 'Edit Groups', { :controller => :settings, :action => :follow },
     "data-role" => "button", "data-mini" => true, "data-inline" => "true"

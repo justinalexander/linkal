@@ -101,7 +101,7 @@ describe "Authentication" do
 
         describe "after signing in" do
           it "should render the desired protected page" do
-            page.should have_link('Edit groups', href: follow_organizations_path)
+            page.should have_link('Edit Groups', href: follow_organizations_path)
           end
 
           describe "when signing in again" do

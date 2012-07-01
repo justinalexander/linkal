@@ -3,9 +3,9 @@
   %div{"data-role"=>:navbar}
     %ul
       %li
-        =link_to "My Events", {:controller => :main, :action => :my_events}, "data-role" => :button
+        =link_to "My Events", {:controller => :main, :action => :my_events}, "data-role" => :button, "data-ajax" => :true
       %li
-        =link_to "All Events", {:controller => :main, :action => :all_events}, "data-role" => :button
+        =link_to "All Events", {:controller => :main, :action => :all_events}, "data-role" => :button, "data-ajax" => :true
 
 
   = yield :view_buttons

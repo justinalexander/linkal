@@ -71,6 +71,8 @@ class Venue < ActiveRecord::Base
   attr_accessor :credit_card_number, :credit_card_verification_value, :manual_payment
 
   has_many :events
+  has_many :user_organizations
+
   belongs_to :location
   belongs_to :billing_location, :class_name => "Location", :foreign_key => "billing_location_id"
   has_many :custom_locations, :through => :events, :source => :location

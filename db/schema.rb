@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627110752) do
+ActiveRecord::Schema.define(:version => 20120628183935) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(:version => 20120627110752) do
   create_table "user_organizations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "venue_id"
-    t.boolean  "follow_company_event"
+    t.boolean  "follow_company_events"
     t.boolean  "follow_endorsed_events"
     t.datetime "created_at"
     t.datetime "updated_at"

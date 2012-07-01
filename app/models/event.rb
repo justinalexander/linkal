@@ -51,7 +51,9 @@ class Event < ActiveRecord::Base
   # can't use :all_blank because "state" is a drop-down pre-populated with "AL":
   accepts_nested_attributes_for :location, :reject_if => proc { |attributes| attributes['name'].blank? }
 
-  validates_presence_of :start_at, :name, :category, :cost, :description, :venue, :business_relation
+  has_many :user_organizations, :through => :venue
+
+  validates_presence_of :start_at, :name, :category, :description, :venue, :business_relation
   validates_inclusion_of :category, :in => valid_category_stubs
   validates_inclusion_of :business_relation, :in => valid_relation_stubs
   validates_presence_of :other_category_name, :if => :other_category?
@@ -165,8 +167,8 @@ class Event < ActiveRecord::Base
   end
 
   def self.from_organizations_followed_by(user)
-    followed_organizations_ids = "SELECT venue_id FROM user_organizations
-                         WHERE user_id = :user_id"
-    where("venue_id IN (#{followed_organizations_ids})", user_id: user.id)
+    Event.joins(:venue).joins(:user_organizations)
+      .where("user_id = :user_id", user_id: user.id)
+      .where("(business_relation in (1, null) and follow_company_events = true) or (business_relation in (2, null) and follow_endorsed_events = true)")
   end
 end

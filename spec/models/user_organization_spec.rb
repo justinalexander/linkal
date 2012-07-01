@@ -34,8 +34,8 @@ describe "User Organizations" do
       @user_organization.venue.should == @venue
     end
   end
-  describe "validations" do
 
+  describe "validations" do
     it "should require a user_id" do
       @user_organization.user_id = nil
       @user_organization.should_not be_valid
@@ -44,6 +44,18 @@ describe "User Organizations" do
     it "should require a venue_id" do
       @user_organization.venue_id = nil
       @user_organization.should_not be_valid
+    end
+  end
+
+  describe "default values" do
+    before(:each) do
+      @user_organization.save
+    end
+    it "should follow company's own events" do
+      @user_organization.follow_company_events.should be true
+    end
+    it "should follow company's endorsed events" do
+      @user_organization.follow_endorsed_events.should be true
     end
   end
 end

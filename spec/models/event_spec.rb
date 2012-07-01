@@ -11,7 +11,7 @@ describe Event do
     event.should be_valid
   end
 
-  %w(start_at name category cost description venue_id).each do |required_attribute|
+  %w(start_at name category description venue_id).each do |required_attribute|
     it "should be invalid without #{required_attribute}" do
       invalid_attrs = attrs.dup
       invalid_attrs.delete(required_attribute.to_sym)

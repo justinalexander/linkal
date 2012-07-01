@@ -7,7 +7,7 @@ ActiveAdmin.register Event do
       f.input :category, :collection => Event.categories_for_select
       f.input :business_relation, :as => :select, :collection => Event.relations_for_select
       f.input :city
-      f.input :other_category_name
+      f.input :other_category_name, :label => 'Industry'
       f.input :cost
       f.input :start_at, :as => :string, :wrapper_html => {:class => "datepicker"}
       f.input :end_at, :as => :string, :wrapper_html => {:class => "datepicker"}
@@ -33,14 +33,8 @@ ActiveAdmin.register Event do
     column :relation do |event|
       event.relation_name
     end
-    column :cost do |event|
-      number_to_currency event.cost
-    end
     column :attending
     column :maybe_attending
-    column "Balance" do |event|
-      number_to_currency event.balance
-    end
     column 'Page Clicks' do |event|
       number_to_human event.views.count
     end
@@ -58,9 +52,6 @@ ActiveAdmin.register Event do
       end
       row :city
       row :other_category_name
-      row :cost do
-        number_to_currency( event.cost )
-      end
       row :start_at
       row :end_at
       row :description do
@@ -94,9 +85,6 @@ ActiveAdmin.register Event do
       end
       row :attending
       row :maybe_attending
-      row :balance do
-        number_to_currency( event.balance )
-      end
     end
     active_admin_comments
   end

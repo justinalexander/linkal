@@ -8,7 +8,8 @@ class SettingsController < ApplicationController
   def organizations
     ensure_followed_organizations!
 
-    @venues = Venue.from_organizations_followed_by current_user
+    @data_url = params[:data_url]
+    @organizations = current_user.organizations
   end
 
   def account

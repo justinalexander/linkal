@@ -14,11 +14,19 @@ class UserOrganizationsController < ApplicationController
   end
 
   def endorsed
+    org = UserOrganization.find(params[:user_organization_id])
+    org.update_attributes(:follow_endorsed_events => params[:user_organization][:follow_endorsed_events])
 
+    data_url = "/settings/organizations"
+    redirect_to :controller => "settings", :action => "organizations", :data_url => data_url
   end
 
   def company_only
+    org = UserOrganization.find(params[:user_organization_id])
+    org.update_attributes(:follow_company_events => params[:user_organization][:follow_company_events])
 
+    data_url = "/settings/organizations"
+    redirect_to :controller => "settings", :action => "organizations", :data_url => data_url
   end
 
 end

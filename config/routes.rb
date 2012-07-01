@@ -50,8 +50,7 @@ Socialatitude::Application.routes.draw do
     put :create_attendance, :on => :member
   end
   resources :user_organizations do
-    put :company_only
-    put :endorsed
+    put :company_only, :endorsed
   end
 
   match '/contact' => 'high_voltage/pages#show', :id => 'contact', :as => 'contact'

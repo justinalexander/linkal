@@ -24,6 +24,9 @@ class User < ActiveRecord::Base
     user_organizations.find_by_venue_id(venue.id)
   end
 
+  def organizations
+    user_organizations.joins(:venue).includes(:venue).order(:organization_name)
+  end
   protected
     def password_required?
       self.new_record?

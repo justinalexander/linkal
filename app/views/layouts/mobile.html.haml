@@ -15,13 +15,13 @@
     %script{:src => "/javascripts/mobile_app.js"}
 
   %body
-    %div#page{"data-role" => "page", "data-theme" => "b"}
+    %div#page{"data-role" => "page", "data-theme" => "b", "data-url" => "#{@data_url.nil? ? '' : @data_url}"}
 
       %div{"data-theme" => "d", "data-content-theme" => "b", "data-role" => "header"}
         %div
           - if user_signed_in?
             = link_to 'Settings', { :controller => :settings, :action => :organizations },
-                "data-theme" => :b, "data-role" => :button, :class => "ui-btn-left"
+                "data-theme" => :b, "data-role" => :button, :class => "ui-btn-left", "data-ajax" => :false
             = link_to 'Events', events_url,
                 "data-theme" => :b, "data-role" => :button, :class => "ui-btn-right"
 

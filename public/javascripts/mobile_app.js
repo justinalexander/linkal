@@ -58,5 +58,8 @@ $(document).on('pageinit', function() {
 
       $('#attending-maybe').off('click');    });
   });
+  $('input[name^="user_organization"]:checkbox').on('change', function(e){
+    $(e.target).parents('form').first().submit();
+  });
 
 });
