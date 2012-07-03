@@ -7,7 +7,7 @@
       %li
         %a{ :href => event_details_url(e.id), "data-ajax" => :false}
           %p
-            = "#{format_date(e.start_at)} - #{format_date(e.end_at)}"
+            = display_date(e)
           %p
             %strong
               = e.name
