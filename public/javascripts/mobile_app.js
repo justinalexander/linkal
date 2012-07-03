@@ -36,28 +36,19 @@ $(document).on('pageinit', function() {
     });
   });
 
-  $('#attending-yes').on('click', function(e){
-    e.preventDefault();
-    $.ajax({
-      type: "PUT",
-      url: yes_attendance_url,
-    }).done(function( msg ) {
-      $('#attending-yes').addClass('ui-disabled');
-    $('#attending-message').removeClass('hide');
-
-    $('#attending-yes').off('click');
+  $.each(attendance_urls, function(idx, att){
+    $(att.target).on('click', function(e){
+      e.preventDefault();
+      $.ajax({
+        type: "PUT",
+        url: att.url,
+      }).done(function( msg ) {
+        $(att.target).addClass('ui-disabled');
+        $(att.target).off('click');
+      });
     });
   });
-  $('#attending-maybe').on('click', function(e){
-    $.ajax({
-      type: "PUT",
-      url: maybe_attendance_url,
-    }).done(function( msg ) {
-      $('#attending-maybe').addClass('ui-disabled');
-      $('#attending-message').removeClass('hide');
 
-      $('#attending-maybe').off('click');    });
-  });
   $('input[name^="user_organization"]:checkbox').on('change', function(e){
     $(e.target).parents('form').first().submit();
   });

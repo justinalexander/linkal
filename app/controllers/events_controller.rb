@@ -175,6 +175,7 @@ class EventsController < ApplicationController
     case params[:attending].to_s.downcase
     when 'yes'   then @event.increment!(:attending)
     when 'maybe' then @event.increment!(:maybe_attending)
+    when 'not' then @event.increment!(:not_attending)
     end
     respond_to do |format|
       format.js  { render }

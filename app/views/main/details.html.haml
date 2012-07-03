@@ -2,57 +2,55 @@
   = link_to 'Back', events_url,
               "data-theme" => :b, "data-role" => :button, "data-mini" => :true, "data-inline" => :true
 %div.ui-mini
-  %p
-    %strong
-      = @event.name
-  %p
-    %strong
-      %em Date
-    = display_date(@event)
-  %p
-    %strong
-      %em Start
-    = @event.start_at.to_s(:time)
-    %strong
-      %em End
-    = @event.end_at.to_s(:time) if @event.end_at.present?
-  %p
-    %strong
-      %em Type
-    = @event.category_name
-    %strong
-      %em Industry
-    = @event.venue.category_name
-  %p
-    %strong
-      %em Attending
-    = @event.attending
+  %strong
+    = @event.name
+  %br/
+  %strong
+    %em Date
+  = display_date(@event)
+  %br/
+  %strong
+    %em Start
+  = @event.start_at.to_s(:time)
+  %strong
+    %em End
+  = @event.end_at.to_s(:time) if @event.end_at.present?
+  %br/
+  %strong
+    %em Type
+  = @event.category_name
+  %strong
+    %em Industry
+  = @event.industry_name
+  %br/
+  %strong
+    %em Attending
+  = @event.attending
 %p
   = twitter_link_tag(@event)
   = share_by_email_tag(@event)
   = link_to image_tag('share.cal.png'), event_url(@event, :format => 'ics' ), :target => :blank
   = facebook_like
 
-%h4 Let Us Know!
+%strong Please RSVP
 %div.ui-mini
-  %p#attending-message{:class => 'grey-box', :class => :hide}
-    %em Thanks! We hope to see you there.
+  Will you attend this event?
+  = link_to 'Yes', '#', "data-role" => :button,
+      "data-mini" => :true, "data-inline" => :true, "data-rel" => :dialog, :id => 'attending-yes'
+  = link_to 'Maybe', '#', "data-role" => :button,
+      "data-mini" => :true, "data-inline" => :true, "data-rel" => :dialog, :id => 'attending-maybe'
+  = link_to 'No', '#', "data-role" => :button,
+      "data-mini" => :true, "data-inline" => :true, "data-rel" => :dialog, :id => 'attending-no'
 
-  %p
-    Do you plan on attending this event?
-    = link_to 'Yes', '#', "data-role" => :button,
-        "data-mini" => :true, "data-inline" => :true, "data-rel" => :dialog, :id => 'attending-yes'
-    = link_to 'Maybe', '#', "data-role" => :button,
-        "data-mini" => :true, "data-inline" => :true, "data-rel" => :dialog, :id => 'attending-maybe'
-
-%h4 Description
+%strong Description
 %div.ui-mini
   %p
     = @event.description
 
 = google_map_for_event(@event)
 
-%h4
+%br/
+%strong
   = @location.name
 %div.ui-mini
   = @location.address_1
@@ -61,9 +59,17 @@
     = @location.address_2
   %br/
   #{@location.city}, #{@location.state} #{@location.zip}
-  %h4 Phone
-  %p= number_to_phone(@event.phone_number)
+  %br/
+  %strong Phone
+  %span= number_to_phone(@event.phone_number)
 
 :javascript
-  var yes_attendance_url = "#{create_attendance_event_url(@event, :attending => 'yes')}";
-  var maybe_attendance_url = "#{create_attendance_event_url(@event, :attending => 'maybe')}";
+  var attendance_urls = [{
+    target: '#attending-yes',
+    url: "#{create_attendance_event_url(@event, :attending => 'yes')}"}, {
+
+    target: '#attending-maybe',
+    url: "#{create_attendance_event_url(@event, :attending => 'maybe')}"}, {
+
+    target: '#attending-no',
+    url: "#{create_attendance_event_url(@event, :attending => 'not')}"}];

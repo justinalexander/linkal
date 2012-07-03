@@ -53,12 +53,12 @@ class Event < ActiveRecord::Base
 
   has_many :user_organizations, :through => :venue
 
-  validates_presence_of :start_at, :name, :category, :description, :venue, :business_relation
+  validates_presence_of :start_at, :name, :category, :description, :venue, :business_relation, :industry
   validates_inclusion_of :category, :in => valid_category_stubs
   validates_inclusion_of :business_relation, :in => valid_relation_stubs
   validates_presence_of :other_category_name, :if => :other_category?
 
-  attr_protected :deleted, :attending, :maybe_attending
+  attr_protected :deleted, :attending, :maybe_attending, :not_attending
 
   # Designed to take a timestamp at the beginning of a day, and a timestamp at
   # the end of a day
@@ -109,6 +109,9 @@ class Event < ActiveRecord::Base
     other_category? ? self.other_category_name : CATEGORIES.detect{ |c| c[:stub] == self.category }[:name]
   end
 
+  def industry_name
+    industry? ? industry : ''
+  end
   def relation_name
     relation = BUSINESS_RELATIONS.detect{ |r| r[:stub] == self.business_relation}
     relation.nil? ? '' : relation[:name]
