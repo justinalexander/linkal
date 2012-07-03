@@ -32,10 +32,10 @@
   = link_to image_tag('share.cal.png'), event_url(@event, :format => 'ics' ), :target => :blank
   = facebook_like
 
-%strong Please RSVP
 %div.ui-mini
-  Will you attend this event?
+  %strong Please RSVP
   %br/
+  Will you attend this event?
   = link_to 'Yes', '#', "data-role" => :button,
       "data-mini" => :true, "data-inline" => :true, "data-rel" => :dialog, :id => 'attending-yes'
   = link_to 'Maybe', '#', "data-role" => :button,
@@ -43,8 +43,8 @@
   = link_to 'No', '#', "data-role" => :button,
       "data-mini" => :true, "data-inline" => :true, "data-rel" => :dialog, :id => 'attending-no'
 
-%strong Description
 %div.ui-mini
+  %strong Description
   %p
     = @event.description
 
