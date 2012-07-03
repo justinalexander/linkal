@@ -8,7 +8,7 @@ class SettingsController < ApplicationController
   def organizations
     ensure_followed_organizations!
 
-    @data_url = params[:data_url]
+    @data_url = params[:data_url] ? params[:data_url] : nil
     @organizations = current_user.organizations
   end
 

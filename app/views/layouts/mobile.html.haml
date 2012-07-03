@@ -12,10 +12,9 @@
     %script{:src => "/javascripts/libs/jqm-datebox.mode.calbox.min.js"}
     %script{:src => "/javascripts/libs/jquery.mobile.datebox.i18n.en_US.utf8.js"}
     %script{:src => "/javascripts/mylibs/jquery.placeholder.min.js"}
-    %script{:src => "/javascripts/mobile_app.js"}
 
   %body
-    %div#page{"data-role" => "page", "data-theme" => "b", "data-url" => "#{@data_url.nil? ? '' : @data_url}"}
+    %div#page{"data-role" => "page", "data-theme" => "b", "data-url" => (@data_url if !@data_url.nil?)}
 
       %div{"data-theme" => "d", "data-content-theme" => "b", "data-role" => "header"}
         %div
@@ -38,4 +37,6 @@
         = google_analytics
       - if Rails.env.development?
         = display_session_hash
+
+      %script{:src => "/javascripts/mobile_app.js"}
     / /page

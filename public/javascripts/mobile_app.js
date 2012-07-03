@@ -1,4 +1,5 @@
 $(document).on('pageinit', function() {
+
   $('input[placeholder], textarea[placeholder]').placeholder();
 
   $('[class*="ui-btn-up"]').each(function(idx, date_box){
@@ -36,18 +37,20 @@ $(document).on('pageinit', function() {
     });
   });
 
-  $.each(attendance_urls, function(idx, att){
-    $(att.target).on('click', function(e){
-      e.preventDefault();
-      $.ajax({
-        type: "PUT",
-        url: att.url,
-      }).done(function( msg ) {
-        $(att.target).addClass('ui-disabled');
-        $(att.target).off('click');
+  if(typeof(attendance_urls) !== 'undefined'){
+    $.each(attendance_urls, function(idx, att){
+      $(att.target).on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+          type: "PUT",
+          url: att.url,
+        }).done(function( msg ) {
+          $(att.target).addClass('ui-disabled');
+          $(att.target).off('click');
+        });
       });
     });
-  });
+  }
 
   $('input[name^="user_organization"]:checkbox').on('change', function(e){
     $(e.target).parents('form').first().submit();
