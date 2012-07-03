@@ -14,6 +14,6 @@ module MainHelper
     if date.nil?
       return ''
     end
-    date.strftime("%A %B #{date.day.ordinalize}")
+    date.strftime("%a %B #{date.day.ordinalize}")
   end
 end
