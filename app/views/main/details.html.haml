@@ -46,15 +46,15 @@
 
 %div.ui-mini
   %strong Description
-  %p
-    = @event.description
+  %br/
+  = @event.description
 
 = google_map_for_event(@event)
 
-%br/
-%strong
-  = @location.name
 %div.ui-mini
+  %strong
+    = @location.name
+  %br/
   = @location.address_1
   - if @location.address_2.present?
     %br/
