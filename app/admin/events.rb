@@ -6,7 +6,7 @@ ActiveAdmin.register Event do
       f.input :venue
       f.input :category, :collection => Event.categories_for_select
       f.input :other_category_name
-      f.input :industry
+      f.input :industry, :collection => Event.industries_for_select
       f.input :business_relation, :as => :select, :collection => Event.relations_for_select
       f.input :city
       f.input :cost

@@ -4,16 +4,19 @@ class Event < ActiveRecord::Base
   @@per_page = 20
 
   CATEGORIES = [
-    { :name => 'Sports',                 :stub => 'sports' },
-    { :name => 'Community',              :stub => 'community' },
-    { :name => 'Live Music',             :stub => 'live-music' },
-    { :name => 'Benefit/Fundraiser',     :stub => 'benefit-fundraiser' },
-    { :name => 'Religious',              :stub => 'religious' },
-    { :name => 'Promotional',            :stub => 'promotional' },
-    { :name => 'Speaking',               :stub => 'speaking' },
-    { :name => 'Visual/Performing Arts', :stub => 'visual-performing-arts' },
-    { :name => 'Culinary/Spirits',       :stub => 'culinary-spirits' },
-    { :name => 'Other',                  :stub => 'other' }
+    { :name => 'Exhibition/Tradeshow',  :stub => 'exhibition' },
+    { :name => 'Networking',            :stub => 'networking' },
+    { :name => 'Seminar',               :stub => 'seminar' },
+    { :name => 'Webinar',               :stub => 'webinar' },
+    { :name => 'Training/Workshop',     :stub => 'training' },
+    { :name => 'Forum/Discussion',      :stub => 'forum' },
+    { :name => 'Conference/Summit',     :stub => 'conference' },
+    { :name => 'Lecture',               :stub => 'lecture' },
+    { :name => 'Convention',            :stub => 'convention' },
+    { :name => 'Promotional',           :stub => 'promotional' },
+    { :name => 'Product Launch',        :stub => 'launch' },
+    { :name => 'Grand Opening',         :stub => 'opening' },
+    { :name => 'Other',                 :stub => 'other' }
   ]
 
   def self.valid_category_stubs
@@ -22,6 +25,60 @@ class Event < ActiveRecord::Base
 
   def self.categories_for_select
     CATEGORIES.map{ |c| [c[:name], c[:stub]] }
+  end
+
+  INDUSTRIES = [
+    { :name => 'Accounting', :stub => 'accounting' },
+    { :name => 'Architecture and Planning', :stub => 'architecture' },
+    { :name => 'Automotive', :stub => 'automotive' },
+    { :name => 'Banking', :stub => 'banking' },
+    { :name => 'Biotechnology', :stub => 'biotechnology' },
+    { :name => 'Careers & Recruiting', :stub => 'careers' },
+    { :name => 'Computer Games', :stub => 'games' },
+    { :name => 'Computer Software', :stub => 'software' },
+    { :name => 'Construction', :stub => 'construction' },
+    { :name => 'Design', :stub => 'design' },
+    { :name => 'Education Management', :stub => 'education' },
+    { :name => 'Entertainment', :stub => 'entertainment' },
+    { :name => 'Fashion & Apparel', :stub => 'fashion' },
+    { :name => 'Film & Motion Pictures', :stub => 'film' },
+    { :name => 'Financial Services', :stub => 'financial' },
+    { :name => 'Food & Beverage', :stub => 'food' },
+    { :name => 'Government/Municipal Affairs', :stub => 'government' },
+    { :name => 'Graphic Design', :stub => 'graphic' },
+    { :name => 'Health, Wellness & Fitness', :stub => 'health' },
+    { :name => 'Higher Education', :stub => 'higher_education' },
+    { :name => 'Hospital & Health Care', :stub => 'healthcare' },
+    { :name => 'Hospitality', :stub => 'hospitality' },
+    { :name => 'Human Resources', :stub => 'hr' },
+    { :name => 'Insurance', :stub => 'insurance' },
+    { :name => 'Information Technology and Services', :stub => 'it' },
+    { :name => 'Internet', :stub => 'internet' },
+    { :name => 'International Trade & Development', :stub => 'trade' },
+    { :name => 'Law', :stub => 'law' },
+    { :name => 'Leisure & Travel', :stub => 'leisure' },
+    { :name => 'Management Consulting', :stub => 'management' },
+    { :name => 'Marketing & Advertising', :stub => 'marketing' },
+    { :name => 'Nanotechnology', :stub => 'nanotechnology' },
+    { :name => 'Nonprofit', :stub => 'nonprofit' },
+    { :name => 'Oil & Energy', :stub => 'oil' },
+    { :name => 'Online Media', :stub => 'online_media' },
+    { :name => 'Pharmaceuticals', :stub => 'pharmaceuticals' },
+    { :name => 'Public Relations', :stub => 'pr' },
+    { :name => 'Publishing', :stub => 'publishing' },
+    { :name => 'Real Estate', :stub => 'real_estate' },
+    { :name => 'Restaurants', :stub => 'restaurants' },
+    { :name => 'Retail', :stub => 'retail' },
+    { :name => 'Semiconductors', :stub => 'semiconductors' },
+    { :name => 'Telecommunications', :stub => 'telecommunications' },
+    { :name => 'Transportation & Logistics', :stub => 'transportation' },
+    { :name => 'Venture Capital & Private Equity', :stub => 'vc' }
+  ]
+  def self.valid_industry_stubs
+    INDUSTRIES.map{ |i| i[:stub]}
+  end
+  def self.industries_for_select
+    INDUSTRIES.map{ |i| [i[:name], i[:stub]] }
   end
 
   BUSINESS_RELATIONS = [
@@ -106,11 +163,14 @@ class Event < ActiveRecord::Base
   end
 
   def category_name
-    other_category? ? self.other_category_name : CATEGORIES.detect{ |c| c[:stub] == self.category }[:name]
+    return self.other_category_name if other_category? 
+    found_category = CATEGORIES.detect{ |c| c[:stub] == self.category }
+    found_category.nil? ? self.category : found_category[:name]
   end
 
   def industry_name
-    industry? ? industry : ''
+    found_industry = INDUSTRIES.detect{ |i| i[:stub] == self.industry }
+    found_industry.nil? ? self.industry : found_industry[:name]
   end
   def relation_name
     relation = BUSINESS_RELATIONS.detect{ |r| r[:stub] == self.business_relation}
