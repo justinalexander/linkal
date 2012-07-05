@@ -1,5 +1,6 @@
 input.placeholder, textarea.placeholder { color: #aaa;}
 #events{margin-bottom: 10px; margin-top:10px;}
 .hide{display: none;}
-.ui-mini, .ui-mini p{font-size: 11px;}
-.ui-mini a {font-size: 11px; margin: 0 !important;}
+.ui-mini, .ui-mini p{font-size: 13px;}
+.ui-mini a {font-size: 13px; margin: 0 !important;}
+.event-details{line-height: 22px;}

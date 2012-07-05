@@ -1,7 +1,7 @@
 %p
   = link_to 'Back', events_url,
               "data-theme" => :b, "data-role" => :button, "data-mini" => :true, "data-inline" => :true
-%div.ui-mini
+%div.ui-mini.event-details
   %strong
     = @event.name
   %br/
@@ -19,6 +19,7 @@
   %strong
     %em Type
   = @event.category_name
+  %br/
   %strong
     %em Industry
   = @event.industry_name
