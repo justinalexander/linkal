@@ -37,6 +37,7 @@ Socialatitude::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => 'socialatitude.heroku.com' }
+  config.action_mailer.delivery_method = :ses
 
   # Enable threaded mode
   # config.threadsafe!
@@ -47,4 +48,7 @@ Socialatitude::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  AMAZON_ACCESS_KEY = 'AKIAI3TTP3JTLCP7RUJQ'
+  AMAZON_SECRET_KEY = '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'
 end
