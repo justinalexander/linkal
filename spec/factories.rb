@@ -3,7 +3,8 @@ FactoryGirl.define do
     sequence(:name) {|n| "Event #{n}" }
     start_at { 1.hour.from_now }
 
-    category 'visual-performing-arts'
+    category 'promotional'
+    industry 'hr'
     business_relation 1
     cost 0
     description { |ee|  "Description for #{ee.name}" }

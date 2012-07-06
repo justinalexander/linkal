@@ -14,6 +14,7 @@ gem 'activemerchant', '~> 1.15.0'
 gem 'session-view-helper', '0.2.2'
 gem 'icalendar'
 gem 'gibbon' #Mailchimp API
+gem "aws-ses", "~> 0.3.2", :require => 'aws/ses'
 
 group :development, :test do
   gem 'forgery'

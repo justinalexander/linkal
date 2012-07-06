@@ -49,6 +49,14 @@ GEM
     activesupport (3.0.10)
     addressable (2.2.6)
     arel (2.0.10)
+    aws-ses (0.3.2)
+      builder
+      builder
+      mail (~> 2.2.5)
+      mime-types
+      mime-types
+      xml-simple
+      xml-simple
     bcrypt-ruby (3.0.1)
     braintree (2.12.0)
       builder (>= 2.0.0)
@@ -216,6 +224,7 @@ GEM
     warden (1.2.1)
       rack (>= 1.0)
     will_paginate (3.0.pre2)
+    xml-simple (1.1.1)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -225,6 +234,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   activemerchant (~> 1.15.0)
+  aws-ses (~> 0.3.2)
   capybara (= 1.1.2)
   devise (= 1.5.3)
   event-calendar!

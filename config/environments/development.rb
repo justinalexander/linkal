@@ -17,14 +17,18 @@ Socialatitude::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :ses
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
-  
+
   #log ActiveRecord
   ActiveRecord::Base.logger = Logger.new(STDOUT) if defined? Rails::Console
+
+  AMAZON_ACCESS_KEY = 'AKIAI3TTP3JTLCP7RUJQ'
+  AMAZON_SECRET_KEY = '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'
 end
 
