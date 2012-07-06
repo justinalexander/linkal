@@ -36,7 +36,7 @@ Socialatitude::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'www.socialatitude.com' }
+  config.action_mailer.default_url_options = { :host => 'www.senkd.com' }
   config.action_mailer.delivery_method = :ses
 
   # Enable threaded mode

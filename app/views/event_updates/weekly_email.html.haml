@@ -1,1 +1,19 @@
-Upcoming Events
+%h2 Upcoming Events
+- if @events.count == 0
+  %em No upcoming events.
+- else
+  %table
+    - @events.each do |e|
+      %tr
+        %td
+          %a{ :href => event_details_url(e.id)}
+            = e.name
+          %br/
+          = display_date(e)
+          %br/
+          %strong
+            = "#{e.attending} attending"
+          %em
+            = "#{e.location_name}, #{e.start_at.strftime("%l:%M%P")}"
+          %br/
+          = e.organization_desc
