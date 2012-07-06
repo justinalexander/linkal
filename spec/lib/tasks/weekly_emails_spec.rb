@@ -10,6 +10,7 @@ describe 'weekly emails rake task' do
   describe 'weekly_emails:event_updates' do
     before do
       @user = FactoryGirl.create(:user)
+      @user.weekly_email = true
     end
 
     let :run_rake_task do
@@ -17,12 +18,9 @@ describe 'weekly emails rake task' do
       Rake.application.invoke_task "weekly_emails:event_updates"
     end
 
-    it "should send an email" do
+    it "should send one email" do
       run_rake_task
       ActionMailer::Base.deliveries.count.should eql 1
-      current_email = ActionMailer::Base.deliveries.last
-      current_email.to.should include @user.email
     end
-
   end
 end

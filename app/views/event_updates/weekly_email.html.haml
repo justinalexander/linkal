@@ -1,4 +1,8 @@
-%h2 Upcoming Events
+%p{:style => 'text-align: center;'}
+  %a{:href => root_url}
+    %img{:src => "#{root_url}images/logo_simple.png"}
+%h2{:style => 'text-align: center;'} Your Upcoming Events
+%hr
 - if @events.count == 0
   %em No upcoming events.
 - else
@@ -8,12 +12,29 @@
         %td
           %a{ :href => event_details_url(e.id)}
             = e.name
-          %br/
-          = display_date(e)
-          %br/
-          %strong
-            = "#{e.attending} attending"
+          = "#{display_date(e)},"
           %em
             = "#{e.location_name}, #{e.start_at.strftime("%l:%M%P")}"
-          %br/
+          %br
           = e.organization_desc
+          %br
+          %strong Type
+          = e.category_name
+          %strong Industry
+          = e.industry_name
+          %strong Attending
+          = e.attending
+%hr
+%p{:style => 'text-align: center;'}
+  %a{:href => 'https://twitter.com/#!/SenkdEvents'} follow on Twitter
+  |
+  %a{:href => 'https://facebook.com/senkdevents'} friend on Facebook
+%p{:style => 'text-align: center;'}
+  %em Copyright © 2012 Senkd, All rights reserved.
+  %br
+  You joined this list by signing up at 
+  %a{:href => root_url} www.senkd.com
+  %br
+  %a{:href => edit_email_notifications_url} Update Email Preferences
+  %br
+  PO Box 2578, Cornelius, NC 28031

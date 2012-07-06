@@ -4,7 +4,9 @@ namespace :weekly_emails do
     if Time.now.friday?
       puts 'Sending emails...'
       User.all.each do |user|
-        EventUpdates.weekly_email(user).deliver
+        if user.weekly_email?
+          EventUpdates.weekly_email(user).deliver
+        end
       end
       puts 'done.'
     end

@@ -23,6 +23,7 @@ Socialatitude::Application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :test
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
@@ -32,4 +33,7 @@ Socialatitude::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  AMAZON_ACCESS_KEY = 'AKIAI3TTP3JTLCP7RUJQ'
+  AMAZON_SECRET_KEY = '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'
 end
