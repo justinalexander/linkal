@@ -1,4 +1,4 @@
 EMAIL_TEST_USERS = [
-  'valentin.zberea@gmail.com',
-  'jgalexa@gmail.com'
+  #'valentin.zberea@gmail.com',
+  #'jgalexa@gmail.com'
 ]
