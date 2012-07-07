@@ -9,6 +9,11 @@ namespace :weekly_emails do
         end
       end
       puts 'done.'
+    else
+      EMAIL_TEST_USERS.each do |email|
+        user = User.find_by_email(email)
+        EventUpdates.weekly_email(user).deliver if not user.nil?
+      end
     end
   end
 
