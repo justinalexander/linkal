@@ -1,3 +1,9 @@
+- content_for :events_button do
+  = render 'main/back_to_events', :button_text => 'Back To Events', :button_class => 'ui-btn-right'
+
+- content_for :settings_navbar do
+  = render 'settings_navbar'
+
 = devise_error_messages!
 
 %div{"data-role" => :collapsible}

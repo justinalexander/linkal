@@ -1,14 +1,5 @@
 - content_for :content do
-
-  %div{"data-role"=>:navbar}
-    %ul
-      %li
-        =link_to "My Groups", {:controller => :settings, :action => :organizations}, "data-role" => :button, "data-ajax" => :false
-      %li
-        =link_to "Email Settings", edit_email_notifications_url, "data-role" => :button
-      %li
-        =link_to "Account Info", {:controller => :settings, :action => :account}, "data-role" => :button
-
+  = yield :settings_navbar
   %div
     = yield
 

@@ -1,9 +1,20 @@
+- content_for :settings_button do
+  = render 'settings_button'
+
+- content_for :events_button do
+  =link_to "My Events", {:controller => :main, :action => :my_events},
+    "data-role" => :button, "data-ajax" => :true, "data-theme" => :b, :class => "ui-btn-right"
+
 - content_for :view_buttons do
-  %p
-    = link_to "List", all_events_url, "data-role" => :button,
-      "data-inline" => "true", "data-mini" => "true", "data-ajax" => :false
-    = link_to "Calendar", all_events_calendar_url, "data-role" => :button,
-      "data-inline" => "true", "data-mini" => "true", "data-ajax" => :false
+  %div{"data-role"=>:navbar}
+    %ul
+      %li
+        = link_to "List", all_events_url, "data-role" => :button,
+          "data-inline" => "true", "data-mini" => "true", "data-ajax" => :false
+      %li
+        = link_to "Calendar", all_events_calendar_url, "data-role" => :button,
+          "data-inline" => "true", "data-mini" => "true", "data-ajax" => :false
+
 %div{:style => "text-align:center"}
   %h2 All Events
 

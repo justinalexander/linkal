@@ -1,6 +1,6 @@
-%p
-  = link_to 'Back', events_url,
-              "data-theme" => :b, "data-role" => :button, "data-mini" => :true, "data-inline" => :true
+- content_for :events_button do
+  = render 'main/back_to_events', :button_text => 'Back', :button_class => 'ui-btn-right'
+
 %div.ui-mini.event-details
   %strong
     = @event.name

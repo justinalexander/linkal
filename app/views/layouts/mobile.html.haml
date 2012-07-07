@@ -19,10 +19,8 @@
       %div{"data-theme" => "d", "data-content-theme" => "b", "data-role" => "header"}
         %div
           - if user_signed_in?
-            = link_to 'Settings', { :controller => :settings, :action => :organizations },
-                "data-theme" => :b, "data-role" => :button, :class => "ui-btn-left", "data-ajax" => :false
-            = link_to 'Events', events_url,
-                "data-theme" => :b, "data-role" => :button, :class => "ui-btn-right"
+            = yield :settings_button
+            = yield :events_button
 
         %div{"style"=>"text-align:center"}
           %img{"src"=>"/images/logo_simple.png"}

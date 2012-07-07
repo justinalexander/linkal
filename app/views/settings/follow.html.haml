@@ -4,3 +4,5 @@
   - @venues.each do |v|
     %li
       = render 'follow_form', :venue => v
+%p{:style => 'text-align: center;'}
+  = render 'main/back_to_events', :button_text => 'Back To Events', :button_class => ''
