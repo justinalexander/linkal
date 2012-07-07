@@ -7,15 +7,15 @@
 %h2 My Groups
 %ul#events
   - @organizations.each do |org|
-    %li{"data-role" => :collapsible, "data-theme" => "c"}
+    %li{"data-role" => :collapsible}
       %h5.ui-li-header
         = org.venue.name
       %p.ui-li-desc
         =form_for(org, :url => {:action => :company_only, :controller => :user_organizations, :user_organization_id => org.id}, :method => :put) do |f|
-          = f.check_box :follow_company_events, "data-theme" => :d, "data-mini" => :true
+          = f.check_box :follow_company_events, "data-mini" => :true
           = f.label :follow_company_events, "Group Only Events"
         =form_for(org, :url => {:action => :endorsed, :controller => :user_organizations, :user_organization_id => org.id}, :method => :put ) do |f|
-          = f.check_box :follow_endorsed_events, "data-theme" => :d, "data-mini" => :true
+          = f.check_box :follow_endorsed_events, "data-mini" => :true
           = f.label :follow_endorsed_events, "Group Endorsed Events"
 %p
   = link_to 'Edit Groups', { :controller => :settings, :action => :follow },
