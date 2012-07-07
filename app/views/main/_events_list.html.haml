@@ -2,7 +2,7 @@
   %em
     = empty_text
 - else
-  %ul{"data-role" => :listview}
+  %ul{"data-role" => :listview, "data-theme" => :g}
     - events.each do |e|
       %li
         %a{ :href => event_details_url(e.id), "data-ajax" => :false}
