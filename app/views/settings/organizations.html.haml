@@ -7,7 +7,7 @@
 %h2 My Groups
 %ul#events
   - @organizations.each do |org|
-    %li{"data-role" => :collapsible "data-theme" => "c"}
+    %li{"data-role" => :collapsible, "data-theme" => "c"}
       %h5.ui-li-header
         = org.venue.name
       %p.ui-li-desc
