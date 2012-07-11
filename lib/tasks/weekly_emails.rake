@@ -1,7 +1,7 @@
 namespace :weekly_emails do
   desc "weekly emails to all subscribed users with list of events"
   task :event_updates => :environment do
-    if Time.now.friday?
+    if Time.now.monday?
       puts 'Sending emails...'
       User.all.each do |user|
         if user.weekly_email?

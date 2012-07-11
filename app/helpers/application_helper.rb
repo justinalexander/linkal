@@ -47,7 +47,7 @@ module ApplicationHelper
       <script type="text/javascript">
       
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '#{Rails.env == 'production' ? 'UA-23309775-1' : 'UA-23142118-1'}']);
+      _gaq.push(['_setAccount', '#{Rails.env == 'production' ? 'UA-33312959-1' : 'UA-33312959-1'}']);
       _gaq.push(['_trackPageview']);
       
       (function() {
