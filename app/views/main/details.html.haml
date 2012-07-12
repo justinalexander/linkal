@@ -48,22 +48,23 @@
 %div.ui-mini
   %strong Description
   %br/
-  %pre~ @event.description
+  %p.pre~ @event.description
 
 = google_map_for_event(@event)
 
 %div.ui-mini
   %strong
-    = @location.name
+    #{@location.nil? ? '' : @location.name}
   %br/
-  = @location.address_1
-  - if @location.address_2.present?
+  #{@location.nil? ? '' : @location.address_1}
+  - if !@location.nil? and @location.address_2.present?
     %br/
-    = @location.address_2
+    #{@location.nil? ? '' : @location.address_2}
   %br/
-  #{@location.city}, #{@location.state} #{@location.zip}
+  #{@location.nil? ? '' : @location.city} #{@location.nil? ? '' : @location.state} #{@location.nil? ? '' : @location.zip}
   %br/
-  %strong Phone
+  - if ! @event.phone_number.empty?
+    %strong Phone
   %span= number_to_phone(@event.phone_number)
 
 :javascript

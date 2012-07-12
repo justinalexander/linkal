@@ -185,6 +185,8 @@ class Event < ActiveRecord::Base
   end
 
   def phone_number
+    return '' if self.location.nil?
+    return '' if self.venue.location.nil?
     the_location = self.location_id? ? self.location : self.venue.location
     phone = the_location.phone.gsub(/\D/, '').to_i
   end

@@ -4,4 +4,4 @@ input.placeholder, textarea.placeholder { color: #aaa;}
 .ui-mini, .ui-mini p{font-size: 13px;}
 .ui-mini a {font-size: 11px; margin: 0 !important;}
 .event-details{line-height: 22px;}
-pre {font-family:Helvetica, Arial, sans-serif;}
+p.pre {white-space:pre;}

@@ -1,7 +1,12 @@
 module EventsHelper
   
   def google_map_for_event(event)
-    image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{event.location_id? ? event.location.to_gmap_param : event.venue.location.to_gmap_param}&zoom=14&size=298x232&maptype=roadmap&sensor=false&markers=color:blue%7C#{event.location_id? ? event.location.to_gmap_param : event.venue.location.to_gmap_param}"                    
+    return '' if event.location.nil?
+    return '' if event.venue.nil?
+    return '' if event.venue.location.nil?
+
+    center = !event.location.nil? ? event.location.to_gmap_param : event.venue.location_id? ? event.venue.location.to_gmap_param : ''
+    image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{center}&zoom=14&size=298x232&maptype=roadmap&sensor=false&markers=color:blue%7C#{center}"
   end
 
   def per_page_options
