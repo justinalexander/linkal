@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '~> 3.0.7'
 
 gem 'pg'
-gem 'haml', '~> 3.1.1'
+gem 'haml', '~> 3.1.6'
 gem 'event-calendar', :git => 'git://github.com/highgroove/event_calendar.git', :require => 'event_calendar'
 gem 'jquery-rails', '~> 0.2.6'
 gem 'will_paginate', '3.0.pre2'
