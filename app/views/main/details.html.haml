@@ -63,7 +63,7 @@
   %br/
   #{@location.nil? ? '' : @location.city} #{@location.nil? ? '' : @location.state} #{@location.nil? ? '' : @location.zip}
   %br/
-  - if ! @event.phone_number.empty?
+  - if ! @event.phone_number == ''
     %strong Phone
   %span= number_to_phone(@event.phone_number)
 
