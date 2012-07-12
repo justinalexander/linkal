@@ -150,6 +150,11 @@ class Event < ActiveRecord::Base
   default_scope where(:deleted => false).order(:start_at)
 
   def location_name
+    return '' if self.nil?
+    return '' if self.location.nil?
+    return '' if self.venue.nil?
+    return '' if self.venue.location.nil?
+
     self.location_id? ? self.location.name : self.venue.location.name
   end
 
@@ -181,7 +186,7 @@ class Event < ActiveRecord::Base
     relation.nil? ? '' : relation[:short_desc]
   end
   def organization_desc
-    "#{venue.name} #{relation_short_desc}"
+    "#{venue.nil? ? '' : venue.name} #{relation_short_desc}"
   end
 
   def phone_number
