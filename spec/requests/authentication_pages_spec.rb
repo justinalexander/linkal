@@ -75,7 +75,7 @@ describe "Authentication" do
 
       it { should_not have_selector('h3', text: "Sign Up") }
       it { should_not have_selector('h2', text: "My Events") }
-      it { should have_link('My Groups', href: settings_organizations_path)}
+      it { should have_selector('em', text: 'Please choose at least one group to follow')}
     end
   end
 

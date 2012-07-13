@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'rake'
+require 'date'
 
 describe 'weekly emails rake task' do
   before :all do
@@ -19,6 +20,7 @@ describe 'weekly emails rake task' do
     end
 
     it "should send one email" do
+      Timecop.freeze(Date.parse('Monday'))
       run_rake_task
       ActionMailer::Base.deliveries.count.should eql 1
     end
