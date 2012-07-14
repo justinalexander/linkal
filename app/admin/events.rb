@@ -10,8 +10,8 @@ ActiveAdmin.register Event do
       f.input :business_relation, :as => :select, :collection => Event.relations_for_select
       f.input :city
       f.input :cost
-      f.input :start_at, :as => :string, :wrapper_html => {:class => "datepicker"}
-      f.input :end_at, :as => :string, :wrapper_html => {:class => "datepicker"}
+      f.input :start_at, :as => :string, :wrapper_html => {:class => "datetimepicker"}
+      f.input :end_at, :as => :string, :wrapper_html => {:class => "datetimepicker"}
       f.input :description
       f.input :location
     end
@@ -23,7 +23,13 @@ ActiveAdmin.register Event do
       link_to event.name, admin_event_path(event) 
     end
     column :venue do |event|
-      link_to event.venue.location.name, admin_venue_path(event.venue)
+      if event.venue.nil?
+        event.location_name
+      elsif event.venue.location.nil?
+        event.location_name
+      else
+        link_to event.venue.location.name, admin_venue_path(event.venue)
+      end
     end
     column "Date" do |event|
       display_date(event)

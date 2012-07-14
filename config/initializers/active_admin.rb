@@ -96,8 +96,10 @@ ActiveAdmin.setup do |config|
   # and feel.
   #
   # To load a stylesheet:
-  #   config.register_stylesheet 'my_stylesheet.css'
-  #
+  config.register_stylesheet 'jquery-ui-timepicker-addon.css'
+  config.register_stylesheet 'jquery-ui.css'
+  config.register_stylesheet 'jquery-ui-1.8.21.custom.css'
+    #
   # To load a javascript file:
-  #   config.register_javascript 'my_javascript.js'
+  config.register_javascript 'jquery-ui-timepicker-addon.js'
 end
