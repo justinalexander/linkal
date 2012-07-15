@@ -15,6 +15,7 @@ module Socialatitude
     config.autoload_paths += %W(#{config.root}/lib)
 
     config.time_zone = 'Eastern Time (US & Canada)'
+    config.active_record.default_timezone = 'Eastern Time (US & Canada)'
 
     # JavaScript files you want as :defaults (application.js is always included).
     config.action_view.javascript_expansions[:defaults] = %w(jquery jquery-ui rails event_calendar plugins script)
@@ -29,6 +30,6 @@ module Socialatitude
       g.template_engine :haml
       g.test_framework :rspec, :fixture => false, :views => false
     end
-    
+
   end
 end
