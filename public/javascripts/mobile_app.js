@@ -45,8 +45,8 @@ $(document).on('pageinit', function() {
           type: "PUT",
           url: att.url,
         }).done(function( msg ) {
+          $('a[id^="attending"]').removeClass('ui-disabled');
           $(att.target).addClass('ui-disabled');
-          $(att.target).off('click');
         });
       });
     });
