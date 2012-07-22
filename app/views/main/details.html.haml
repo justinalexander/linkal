@@ -48,7 +48,7 @@
 %div.ui-mini
   %strong Description
   %br/
-  %p.pre~ @event.description
+  = simple_format(auto_link(@event.description))
 
 = google_map_for_event(@event)
 
