@@ -23,7 +23,7 @@ describe "Authentication" do
       before { click_button "Log In" }
 
       it { should have_selector('h3', text: 'Log In') }
-      it { should have_error_message }
+      it { should have_selector('div#flash_error') }
 
     end
 

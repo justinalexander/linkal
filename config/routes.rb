@@ -8,7 +8,11 @@ Socialatitude::Application.routes.draw do
 
   scope :protocol => protocol, :constraints => { :protocol => protocol } do
     devise_for :venues
-    devise_for :users, :controllers => { :registrations => "registrations" }
+    devise_for :users, :controllers => { :registrations => "registrations" } do
+      get '/login' => 'devise/sessions#new'
+      post '/login' => 'devise/sessions#create'
+      get '/logout' => 'devise/sessions#destroy'
+    end
   end
 
   match '/my-events' => 'main#my_events', :as => :my_events

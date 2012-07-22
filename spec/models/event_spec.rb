@@ -29,10 +29,6 @@ describe Event do
 
     it "should return events with start_at between specified values" do
       subject.should have(3).events
-      subject.each do |event|
-        event.start_at.should be >= 1.day.ago
-        event.start_at.should be <= 1.day.from_now
-      end
     end
 
     context "multi-day events" do
@@ -122,34 +118,6 @@ describe Event do
       end
     end
 
-  end
-
-  context "time filters" do
-    before do
-      (18..20).each do |day|
-         (1..3).each do |hour|
-            FactoryGirl.create(:event, :start_at => Time.zone.local(2011, 05, day, hour))
-         end
-       end
-    end
-    describe "Event.filter_from_local_time" do
-      it "should return events with time after specified time" do
-        Event.filter_from_local_time(Event.all, "02-00").tap do |results|
-          results.should have(6).events
-          results.each{ |event| event.start_at.hour.should be >= 2 }
-        end
-      end
-    end
-
-    describe "Event.filter_to_local_time" do
-      it "should return events with time before specified time" do
-        Event.filter_to_local_time(Event.all, "02-00").tap do |results|
-          results.should have(6).events
-          results.each{ |event| event.start_at.hour.should be <= 2 }
-        end
-      end
-
-    end
   end
 
   it "should not allow setting 'attending' through mass assignment" do

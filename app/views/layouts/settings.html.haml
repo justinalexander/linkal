@@ -4,6 +4,6 @@
     = yield
 
   %div
-    = link_to "Log Out", destroy_user_session_url, "data-ajax" => :false
+    = link_to "Log Out", logout_url, "data-ajax" => :false
 
 = render :template => 'layouts/mobile'

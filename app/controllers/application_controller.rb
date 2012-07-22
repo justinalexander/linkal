@@ -68,6 +68,6 @@ class ApplicationController < ActionController::Base
 
   # Tell Devise to redirect after sign_out
   def after_sign_out_path_for(resource_or_scope)
-    root_url(:protocol => 'http')
+    login_url(:protocol => 'http')
   end
 end

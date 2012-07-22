@@ -1,7 +1,9 @@
 %h3 Log In
 
-= form_for(resource, :as => resource_name, :url => session_url(resource_name)) do |f|
-  = devise_error_messages!
+= form_for(resource, :as => resource_name, :url => :login, :html => { "data-ajax" => :false}) do |f|
+  = content_tag(:div, flash[:error], :id => "flash_error") if flash[:error]
+  = content_tag(:div, flash[:alert], :id => "flash_error") if flash[:alert]
+  = content_tag(:div, flash[:notice], :id => "flash_error") if flash[:notice]
   %div.ui-hide-label{"data-role" => "fieldcontain"}
     = f.label :email
     = f.email_field :email, :placeholder => "Email"
