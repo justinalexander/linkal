@@ -101,8 +101,8 @@ class Event < ActiveRecord::Base
   end
 
   def after_initialize
-    self[:start_at] = self[:start_at].strftime('%F %X')
-    self[:end_at] = self[:end_at].strftime('%F %X')
+    self[:start_at] = self[:start_at].strftime('%F %X') if not self[:start_at].nil?
+    self[:end_at] = self[:end_at].strftime('%F %X') if not self[:end_at].nil?
   end
   has_event_calendar
   belongs_to :city
