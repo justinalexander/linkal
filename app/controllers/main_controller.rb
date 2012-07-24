@@ -35,6 +35,7 @@ class MainController < ApplicationController
     @event = Event.find(params[:id])
     @location = @event.location_id? ? @event.location : @event.venue.location
 
+    @event.record_view(request.env['REMOTE_ADDR'], request.env['HTTP_REFERER'])
   end
 
   private
