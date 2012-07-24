@@ -10,8 +10,10 @@ ActiveAdmin.register Event do
       f.input :business_relation, :as => :select, :collection => Event.relations_for_select
       f.input :city
       f.input :cost
-      f.input :start_at, :as => :string, :wrapper_html => {:class => "datetimepicker"}
-      f.input :end_at, :as => :string, :wrapper_html => {:class => "datetimepicker"}
+      f.input :start_at, :as => :string,
+        :wrapper_html => {:class => "datetimepicker"}
+      f.input :end_at, :as => :string,
+        :wrapper_html => {:class => "datetimepicker"}
       f.input :description
       f.input :location
     end

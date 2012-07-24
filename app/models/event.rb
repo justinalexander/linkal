@@ -100,6 +100,10 @@ class Event < ActiveRecord::Base
       ['Under $20', 'under-20'] ]
   end
 
+  def after_initialize
+    self[:start_at] = self[:start_at].strftime('%F %X')
+    self[:end_at] = self[:end_at].strftime('%F %X')
+  end
   has_event_calendar
   belongs_to :city
   belongs_to :venue

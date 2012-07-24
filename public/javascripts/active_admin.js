@@ -145,7 +145,7 @@ $(function(){
     $(".datepicker").datepicker({dateFormat: 'yy-mm-dd'});
     $(".datepicker input").datepicker({dateFormat: 'yy-mm-dd'});
 
-    $(".datetimepicker input").datetimepicker({dateFormat: 'yy-mm-dd'});
+    $(".datetimepicker input").datetimepicker({dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm:ss'});
 
     $(".clear_filters_btn").click(function(){
       window.location.search = "";
