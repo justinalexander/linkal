@@ -70,10 +70,10 @@ ActiveAdmin.register Event do
       end
       row :city
       row :start_at do
-        event.start_at.utc
+        event.start_at.utc if not event.start_at.nil?
       end
       row :end_at do
-        event.end_at.utc
+        event.end_at.utc if not event.end_at.nil?
       end
       row :description do
         simple_format event.description
