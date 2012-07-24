@@ -69,8 +69,12 @@ ActiveAdmin.register Event do
         event.relation_name
       end
       row :city
-      row :start_at
-      row :end_at
+      row :start_at do
+        event.start_at.utc
+      end
+      row :end_at do
+        event.end_at.utc
+      end
       row :description do
         simple_format event.description
       end
