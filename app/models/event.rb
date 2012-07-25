@@ -72,7 +72,8 @@ class Event < ActiveRecord::Base
     { :name => 'Semiconductors', :stub => 'semiconductors' },
     { :name => 'Telecommunications', :stub => 'telecommunications' },
     { :name => 'Transportation & Logistics', :stub => 'transportation' },
-    { :name => 'Venture Capital & Private Equity', :stub => 'vc' }
+    { :name => 'Venture Capital & Private Equity', :stub => 'vc' },
+    { :name => 'Small Business', :stub => 'smallbusiness' }
   ]
   def self.valid_industry_stubs
     INDUSTRIES.map{ |i| i[:stub]}
