@@ -114,12 +114,18 @@ ActiveAdmin.register Event do
   controller do
     def update
       update! do |format|
-        @event.start_at = Time.parse(params[:event][:start_at]).in_time_zone('EST')
+        @event.start_at = Time.parse(params[:event][:start_at]).in_time_zone('EST') if not params[:event][:start_at].nil?
+        @event.end_at = Time.parse(params[:event][:end_at]).in_time_zone('EST') if not params[:event][:end_at].nil?
         unless @event.errors.empty? # failure
           format.html { redirect_to admin_event_url(@event) }
         end
       end
     end
+    def create
+      @event = Event.new(params[:event])
+      @event.start_at = Time.parse(params[:event][:start_at]).in_time_zone('EST') if not params[:event][:start_at].nil?
+      @event.end_at = Time.parse(params[:event][:end_at]).in_time_zone('EST') if not params[:event][:end_at].nil?
+      create!
+    end
   end
-
 end
