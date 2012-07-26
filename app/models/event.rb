@@ -1,7 +1,6 @@
 class Event < ActiveRecord::Base
 
   cattr_reader :per_page
-  after_initialize :after_init
 
   @@per_page = 20
 
@@ -105,11 +104,6 @@ class Event < ActiveRecord::Base
       ['Under $10', 'under-10'],
       ['Under $15', 'under-15'],
       ['Under $20', 'under-20'] ]
-  end
-
-  def after_init
-    self[:start_at] = self[:start_at].strftime('%F %R') if not self[:start_at].nil?
-    self[:end_at] = self[:end_at].strftime('%F %R') if not self[:end_at].nil?
   end
 
   has_event_calendar

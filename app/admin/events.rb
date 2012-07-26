@@ -11,9 +11,11 @@ ActiveAdmin.register Event do
       f.input :city
       f.input :cost
       f.input :start_at, :as => :string,
-        :wrapper_html => {:class => "datetimepicker"}
+        :wrapper_html => {:class => "datetimepicker"},
+        :input_html => {:value => f.object.start_at.nil? ? '' : f.object.start_at.utc.strftime('%F %R')}
       f.input :end_at, :as => :string,
-        :wrapper_html => {:class => "datetimepicker"}
+        :wrapper_html => {:class => "datetimepicker"},
+        :input_html => {:value => f.object.end_at.nil? ? '' :f.object.end_at.utc.strftime('%F %R')}
       f.input :description
       f.input :location
     end
@@ -122,10 +124,14 @@ ActiveAdmin.register Event do
       end
     end
     def create
-      @event = Event.new(params[:event])
-      @event.start_at = Time.parse(params[:event][:start_at]).in_time_zone('EST') if not params[:event][:start_at].nil?
-      @event.end_at = Time.parse(params[:event][:end_at]).in_time_zone('EST') if not params[:event][:end_at].nil?
-      create!
+      create! do |format|
+        @event = Event.new(params[:event])
+        @event.start_at = Time.zone.parse(params[:event][:start_at]) if not params[:event][:start_at].nil?
+        @event.end_at = Time.zone.parse(params[:event][:end_at]) if not params[:event][:end_at].nil?
+        unless @event.errors.empty? # failure
+          format.html { redirect_to admin_event_url(@event) }
+        end
+      end
     end
   end
 end
