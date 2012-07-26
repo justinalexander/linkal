@@ -108,8 +108,8 @@ class Event < ActiveRecord::Base
   end
 
   def after_init
-    self[:start_at] = self[:start_at].strftime('%F %X') if not self[:start_at].nil?
-    self[:end_at] = self[:end_at].strftime('%F %X') if not self[:end_at].nil?
+    self[:start_at] = self[:start_at].strftime('%F %R') if not self[:start_at].nil?
+    self[:end_at] = self[:end_at].strftime('%F %R') if not self[:end_at].nil?
   end
 
   has_event_calendar
