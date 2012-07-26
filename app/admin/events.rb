@@ -70,10 +70,10 @@ ActiveAdmin.register Event do
       end
       row :city
       row :start_at do
-        event.start_at.strftime('%F %X') if not event.start_at.nil?
+        event.start_at.utc.strftime('%F %X') if not event.start_at.nil?
       end
       row :end_at do
-        event.end_at.strftime('%F %X') if not event.end_at.nil?
+        event.end_at.utc.strftime('%F %X') if not event.end_at.nil?
       end
       row :description do
         simple_format event.description
@@ -110,4 +110,16 @@ ActiveAdmin.register Event do
     end
     active_admin_comments
   end
+
+  controller do
+    def update
+      update! do |format|
+        @event.start_at = Time.parse(params[:event][:start_at]).in_time_zone('EST')
+        unless @event.errors.empty? # failure
+          format.html { redirect_to admin_event_url(@event) }
+        end
+      end
+    end
+  end
+
 end

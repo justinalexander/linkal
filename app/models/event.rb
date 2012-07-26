@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
 
   cattr_reader :per_page
+  after_initialize :after_init
+
   @@per_page = 20
 
   CATEGORIES = [
@@ -101,10 +103,11 @@ class Event < ActiveRecord::Base
       ['Under $20', 'under-20'] ]
   end
 
-  def after_initialize
+  def after_init
     self[:start_at] = self[:start_at].strftime('%F %X') if not self[:start_at].nil?
     self[:end_at] = self[:end_at].strftime('%F %X') if not self[:end_at].nil?
   end
+
   has_event_calendar
   belongs_to :city
   belongs_to :venue
@@ -137,8 +140,8 @@ class Event < ActiveRecord::Base
           '( (start_at,end_at) OVERLAPS (TIMESTAMP :from, TIMESTAMP :to) and ' + # or overlaps time period
             '(end_at NOT BETWEEN :from AND :end_from) )', # and doesn't end in first 3 hours of time period
           :from => from, :to => to, :end_from => from + 3.hours) }
-  scope :upcoming,  lambda { where(['start_at >= ?', Time.now]) }
-  scope :past,      lambda { where(['start_at < ?', Time.now]) }
+  scope :upcoming,  lambda { where(['start_at >= ?', Time.current]) }
+  scope :past,      lambda { where(['start_at < ?', Time.current]) }
 
   scope :with_cost, lambda { |cost|
       case cost
@@ -247,4 +250,5 @@ class Event < ActiveRecord::Base
       .where("user_id = :user_id", user_id: user.id)
       .where("(business_relation in (1, null) and follow_company_events = true) or (business_relation in (2, null) and follow_endorsed_events = true)")
   end
+
 end

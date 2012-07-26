@@ -54,20 +54,6 @@ describe Event do
     end
   end
 
-  describe ".upcoming" do
-    before do
-      Timecop.freeze(Time.at(Time.now.to_i))
-      (-2..2).each{ |n| FactoryGirl.create(:event, :start_at => n.days.from_now) }
-    end
-    subject{ Event.upcoming }
-    it "should return events with start_at after now" do
-      subject.should have(3).events
-      subject.each do |event|
-        event.start_at.should be >= Time.now
-      end
-    end
-  end
-
   describe ".past" do
     before do
       Timecop.freeze(Time.at(Time.now.to_i))
