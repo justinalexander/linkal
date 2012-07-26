@@ -18,6 +18,7 @@ class Event < ActiveRecord::Base
     { :name => 'Promotional',           :stub => 'promotional' },
     { :name => 'Product Launch',        :stub => 'launch' },
     { :name => 'Grand Opening',         :stub => 'opening' },
+    { :name => 'Book Discussion',         :stub => 'bookdiscussion' },
     { :name => 'Other',                 :stub => 'other' }
   ]
 
@@ -75,7 +76,10 @@ class Event < ActiveRecord::Base
     { :name => 'Telecommunications', :stub => 'telecommunications' },
     { :name => 'Transportation & Logistics', :stub => 'transportation' },
     { :name => 'Venture Capital & Private Equity', :stub => 'vc' },
-    { :name => 'Small Business', :stub => 'smallbusiness' }
+    { :name => 'Small Business', :stub => 'smallbusiness' },
+    { :name => 'Small/Medium Business', :stub => 'smallmedbusiness' },
+    { :name => 'Large Business', :stub => 'largebusiness' },
+    { :name => 'All Industries', :stub => 'allindustries' }
   ]
   def self.valid_industry_stubs
     INDUSTRIES.map{ |i| i[:stub]}
