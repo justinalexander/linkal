@@ -1,9 +1,9 @@
 ActiveAdmin::Dashboards.build do
 
 section "User sign in count" do
-      user do
-        row :sign_in_count
-      end
+show do
+  attributes_table :sign_in_count, :location
+end
 end
 
 
