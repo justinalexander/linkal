@@ -1,8 +1,6 @@
 ActiveAdmin::Dashboards.build do
 
-section "User Sign In Count" do
-  table_for :sign_in_count.user do |t|
-  end
+section "User sign in count" do
 end
 
 
