@@ -2,6 +2,8 @@ ActiveAdmin::Dashboards.build do
 
 section "User sign in count" do
   ul do
+    sign_in_count.user do |post|
+    end
   end
   
 end
