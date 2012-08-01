@@ -1,9 +1,7 @@
-ActiveAdmin::Dashboards.build User do
+ActiveAdmin::Dashboards.build do
 
- index do
-   column :email
- end
-  
+section "user sign in count" do
+end
 
 
 
