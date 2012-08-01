@@ -1,7 +1,9 @@
 ActiveAdmin::Dashboards.build do
-render view_factory.dashboard_page
 
 section "User sign in count" do
+  User do
+    column :sign_in_count
+  end
 end
 
 
