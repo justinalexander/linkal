@@ -15,9 +15,10 @@ class Event < ActiveRecord::Base
     { :name => 'Lecture',               :stub => 'lecture' },
     { :name => 'Convention',            :stub => 'convention' },
     { :name => 'Promotional',           :stub => 'promotional' },
-    { :name => 'Product Launch',        :stub => 'launch' },
+    { :name => 'Launch',                :stub => 'launch' },
     { :name => 'Grand Opening',         :stub => 'opening' },
-    { :name => 'Book Discussion',         :stub => 'bookdiscussion' },
+    { :name => 'Book Discussion',       :stub => 'bookdiscussion' },
+    { :name => 'Informational Session', :stub => 'informationalsession' },
     { :name => 'Other',                 :stub => 'other' }
   ]
 
@@ -78,6 +79,7 @@ class Event < ActiveRecord::Base
     { :name => 'Small Business', :stub => 'smallbusiness' },
     { :name => 'Small/Medium Business', :stub => 'smallmedbusiness' },
     { :name => 'Large Business', :stub => 'largebusiness' },
+    { :name => 'High Growth Technology', :stub => 'highgrowthtechnology' },
     { :name => 'All Industries', :stub => 'allindustries' }
   ]
   def self.valid_industry_stubs
