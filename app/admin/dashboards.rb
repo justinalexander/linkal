@@ -1,7 +1,7 @@
 ActiveAdmin::Dashboards.build do
 
 section "User sign in count" do
-  show :sign_in_count do
+  show user.sign_in_count do
   end
 end
 
