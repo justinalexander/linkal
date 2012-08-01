@@ -1,4 +1,4 @@
-ActiveAdmin::Dashboards.build do
+ActiveAdmin::Dashboards.build User do
 
  index do
    column :email
