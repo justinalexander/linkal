@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   helper :all
 
-  APP_DOMAIN = 'www.socialatitud.com'
+  APP_DOMAIN = 'www.socialatitude.com'
 
   # The default parameters of 0 and a "blank" city name indicate a the 
   # selection of "All Locations".
