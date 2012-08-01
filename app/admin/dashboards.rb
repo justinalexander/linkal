@@ -1,13 +1,12 @@
 ActiveAdmin::Dashboards.build do
 
-User do
 section "User sign in count" do
  index do
    column :email
  end
   
 end
-end
+
 
 
   
