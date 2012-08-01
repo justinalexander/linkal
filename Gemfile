@@ -32,6 +32,7 @@ group :development, :test do
   gem 'timecop'
   gem 'tddium-preview'
   gem 'sqlite3'
+  gem 'taps'
 end
 
 group :test do

@@ -203,10 +203,18 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+    sequel (3.20.0)
     session-view-helper (0.2.2)
     sexp_processor (3.0.7)
+    sinatra (1.0)
+      rack (>= 1.0)
     spork (0.9.0.rc9)
     sqlite3 (1.3.6)
+    taps (0.3.24)
+      rack (>= 1.0.1)
+      rest-client (>= 1.4.0, < 1.7.0)
+      sequel (~> 3.20.0)
+      sinatra (~> 1.0.0)
     tddium-preview (0.9.6)
       bundler
       highline
@@ -263,6 +271,7 @@ DEPENDENCIES
   session-view-helper (= 0.2.2)
   spork (> 0.9.0.rc)
   sqlite3
+  taps
   tddium-preview
   timecop
   will_paginate (= 3.0.pre2)
