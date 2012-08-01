@@ -2,7 +2,7 @@ ActiveAdmin::Dashboards.build do
 
 section "User sign in count" do
   ul do
-    sign_in_count.user do |post|
+    sign_in_count.user(4).collect do |post|
     end
   end
   
