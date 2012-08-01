@@ -1,10 +1,7 @@
 ActiveAdmin::Dashboards.build do
 
 section "User sign in count" do
- User do
-   column :email
-   default_actions
- end
+ render user.sign_in_count
 end
 
 
