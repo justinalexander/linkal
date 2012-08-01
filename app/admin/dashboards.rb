@@ -1,12 +1,11 @@
 ActiveAdmin::Dashboards.build do
 
 section "User sign in count" do
-  User do
     index do
     column :sign_in_count
   end
 end
-end
+
 
 
   
