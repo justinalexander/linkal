@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  validates_presence_of :name, :phone, :address_1, :city
+  validates_presence_of :name, :phone, :address_1, :city, :country
 
   def to_s
     (self.address_1.blank? ? "" : "#{self.address_1}, " ) +
