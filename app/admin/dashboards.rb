@@ -1,9 +1,9 @@
 ActiveAdmin::Dashboards.build do
-section "Sign In Count" do
-  ul do
-    :sign_in_count |post|
-  end
+
+ActiveAdmin.register Post do
+  filter :sign_in_count
 end
+
 
   
   # Define your dashboard sections here. Each block will be
