@@ -1,10 +1,5 @@
 ActiveAdmin::Dashboards.build do
 
-section "User Sign In Count" do
-  div do
-      render 'sign_in_count'
-    end
-  end
   
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
