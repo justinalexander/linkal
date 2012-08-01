@@ -1,13 +1,13 @@
 ActiveAdmin::Dashboards.build do
 
+User do
 section "User sign in count" do
-  ul do
-    sign_in_count.user(4).collect do |post|
-    end
-  end
+ index do
+   column :email
+ end
   
 end
-
+end
 
 
   
