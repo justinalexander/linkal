@@ -1,7 +1,7 @@
 ActiveAdmin::Dashboards.build do
 
-ActiveAdmin.register Post do
-  filter :sign_in_count
+index do
+  column :sign_in_count
 end
 
 
