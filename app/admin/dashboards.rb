@@ -1,7 +1,7 @@
 ActiveAdmin::Dashboards.build do
 
 section "User sign in count" do
-  attributes_table_for task do
+  attributes_table_for do
   end
 end
 
