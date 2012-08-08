@@ -5,7 +5,6 @@ ActiveAdmin::Dashboards.build do
          column :email
          column :last_sign_in_at
          column :sign_in_count
-         column :user_number
        end
        strong { link_to "View All Users", admin_users_path }
       end
