@@ -1,9 +1,16 @@
 ActiveAdmin::Dashboards.build do
 
-section "user sign in count" do
-
+     section "User Sign in Count" do
+       table_for User.order("last_sign_in_at desc").limit(5) do
+         column :email
+         column :last_sign_in_at
+         column :sign_in_count
+         column :user_number
+       end
+       strong { link_to "View All Users", admin_users_path }
+      end
 end
-
+ 
 
 
 
@@ -43,4 +50,4 @@ end
   #
   # Will render the "Recent Users" then the "Recent Posts" sections on the dashboard.
 
-end
+
