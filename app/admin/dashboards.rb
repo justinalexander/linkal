@@ -2,7 +2,7 @@ ActiveAdmin::Dashboards.build do
 
      section "Recent Users" do
        table_for User.order("id desc").limit(5).each do 
-         column :email
+         column :first_name
          column :last_sign_in_at
          column :sign_in_count
        end
