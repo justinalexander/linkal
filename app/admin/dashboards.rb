@@ -1,13 +1,15 @@
 ActiveAdmin::Dashboards.build do
 
-     section "User Sign in Count" do
-       table_for User.order("last_sign_in_at desc").limit(5) do
+     section "Recent Users" do
+       table_for User.order("id desc").limit(5).each do 
          column :email
          column :last_sign_in_at
          column :sign_in_count
        end
        strong { link_to "View All Users", admin_users_path }
       end
+
+
 end
  
 
