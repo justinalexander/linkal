@@ -9,7 +9,18 @@ ActiveAdmin::Dashboards.build do
        strong { link_to "View All Users", admin_users_path }
       end
 
-
+      section "Recent Events" do
+        table_for Event.order("start_at desc").limit(5).each do 
+          column :name
+          column :venue
+        end
+        strong { link_to "View All Events", admin_events_path }
+        
+      
+       # strong { link_to 'New Event', admin_events_new_path }
+     
+       
+       end
 end
  
 
