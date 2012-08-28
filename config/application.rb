@@ -14,7 +14,7 @@ module Socialatitude
   class Application < Rails::Application
     config.autoload_paths += %W(#{config.root}/lib)
 
-    config.time_zone = 'EST'
+    config.time_zone = 'Eastern Time (US & Canada)'
     config.active_record.default_timezone = :utc
 
     # JavaScript files you want as :defaults (application.js is always included).
